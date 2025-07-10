@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Card, CardContent } from 'card.jsx';
-import { Button } from 'button.jsx';
-import { Input } from 'input.jsx';
+import { Card, CardContent } from 'card';
+import { Button } from 'button';
+import { Input } from 'input';
 
 export default function VanSalesPortal() {
   const [entries, setEntries] = useState([]);
