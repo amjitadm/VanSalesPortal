@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import * as XLSX from 'xlsx';
-import logo from '/logo.png';
+import logo from '/logo';
 
 const USERS = [
   { username: 'admin', password: 'admin123' },
