@@ -13,7 +13,12 @@ function VanSalesPortal() {
     product: '',
     quantity: '',
     price: '',
-    salesperson: ''
+    salesperson: '',
+    van: '',
+    route: '',
+    stock: '',
+    customer: '',
+    remarks: ''
   });
 
   const [entries, setEntries] = useState([]);
@@ -31,7 +36,7 @@ function VanSalesPortal() {
     const newEntry = { ...form, salesperson: user.username, total };
     const updated = [...entries, newEntry];
     setEntries(updated);
-    setForm({ date: '', product: '', quantity: '', price: '', salesperson: '' });
+    setForm({ date: '', product: '', quantity: '', price: '', salesperson: '', van: '', route: '', stock: '', customer: '', remarks: '' });
     calculateSummary(updated);
   };
 
@@ -89,25 +94,30 @@ function VanSalesPortal() {
   });
 
   return (
-    <div className="p-6 max-w-6xl mx-auto space-y-8 text-sm md:text-base">
+    <div className="p-6 max-w-7xl mx-auto space-y-8 text-sm md:text-base">
       {!user ? (
         <div className="flex flex-col items-center space-y-6 text-center">
-          <img src="logo.png" alt="Company Logo"/>
+          <center><img src="logo.png" alt="Company Logo" className="w-60" />
           <h1 className="text-3xl font-bold text-gray-900">Van Sales Portal</h1>
           <button onClick={handleLogin} className="bg-gray-700 text-white text-lg px-6 py-2 rounded shadow hover:bg-gray-800">LOGIN</button>
-        </div>
+        </center></div>
       ) : (
         <>
-          <img src="logo.png" alt="Company Logo"/>
+          <img src="logo.png" alt="Company Logo" className="w-60" />
           <h1 className="text-3xl font-bold text-blue-800 text-center">Van Sales Portal</h1>
           <p className="text-gray-600 text-center">Logged in as <strong>{user.username}</strong></p>
 
-          <form onSubmit={handleSubmit} className="grid grid-cols-2 md:grid-cols-3 gap-4 bg-gray-100 p-4 rounded-xl">
+          <form onSubmit={handleSubmit} className="grid grid-cols-2 md:grid-cols-4 gap-4 bg-gray-100 p-4 rounded-xl">
             <input name="date" value={form.date} onChange={handleChange} placeholder="Date" type="date" className="p-2 border rounded" />
             <input name="product" value={form.product} onChange={handleChange} placeholder="Product" className="p-2 border rounded" />
             <input name="quantity" value={form.quantity} onChange={handleChange} placeholder="Quantity" type="number" className="p-2 border rounded" />
             <input name="price" value={form.price} onChange={handleChange} placeholder="Unit Price" type="number" className="p-2 border rounded" />
-            <button type="submit" className="col-span-2 md:col-span-1 bg-blue-600 text-white rounded p-2 hover:bg-blue-700">Add Entry</button>
+            <input name="van" value={form.van} onChange={handleChange} placeholder="Van No." className="p-2 border rounded" />
+            <input name="route" value={form.route} onChange={handleChange} placeholder="Route" className="p-2 border rounded" />
+            <input name="stock" value={form.stock} onChange={handleChange} placeholder="Stock Loaded" className="p-2 border rounded" />
+            <input name="customer" value={form.customer} onChange={handleChange} placeholder="Customer Name" className="p-2 border rounded" />
+            <input name="remarks" value={form.remarks} onChange={handleChange} placeholder="Remarks" className="p-2 border rounded" />
+            <button type="submit" className="col-span-2 md:col-span-2 bg-blue-600 text-white rounded p-2 hover:bg-blue-700">Add Entry</button>
           </form>
 
           <div className="flex flex-wrap gap-4 items-center">
@@ -133,6 +143,11 @@ function VanSalesPortal() {
                   <th className="p-2 border">Product</th>
                   <th className="p-2 border">Quantity</th>
                   <th className="p-2 border">Unit Price</th>
+                  <th className="p-2 border">Van No.</th>
+                  <th className="p-2 border">Route</th>
+                  <th className="p-2 border">Stock</th>
+                  <th className="p-2 border">Customer</th>
+                  <th className="p-2 border">Remarks</th>
                   <th className="p-2 border">Total</th>
                 </tr>
               </thead>
@@ -140,16 +155,21 @@ function VanSalesPortal() {
                 {filteredEntries.map((entry, idx) => (
                   <tr key={idx} className="text-center hover:bg-gray-100">
                     <td className="p-2 border">{entry.date}</td>
-                    <td className="p-2 border">{entry.salesperson || 'N/A'}</td>
+                    <td className="p-2 border">{entry.salesperson}</td>
                     <td className="p-2 border">{entry.product}</td>
                     <td className="p-2 border">{entry.quantity}</td>
                     <td className="p-2 border">{entry.price}</td>
+                    <td className="p-2 border">{entry.van}</td>
+                    <td className="p-2 border">{entry.route}</td>
+                    <td className="p-2 border">{entry.stock}</td>
+                    <td className="p-2 border">{entry.customer}</td>
+                    <td className="p-2 border">{entry.remarks}</td>
                     <td className="p-2 border">{parseFloat(entry.total).toFixed(2)}</td>
                   </tr>
                 ))}
                 {filteredEntries.length === 0 && (
                   <tr>
-                    <td colSpan="6" className="p-4 text-center text-gray-400">No sales logged for selected period.</td>
+                    <td colSpan="11" className="p-4 text-center text-gray-400">No sales logged for selected period.</td>
                   </tr>
                 )}
               </tbody>
