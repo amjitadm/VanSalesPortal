@@ -38,7 +38,7 @@ function CustomerForm({ onSubmit }) {
   };
 
   return (
-    <div className="bg-white p-6 rounded-xl shadow-lg">
+    <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
       <h2 className="text-xl font-semibold mb-6 flex items-center gap-2">
         <UserPlus className="w-5 h-5" />
         Add New Customer

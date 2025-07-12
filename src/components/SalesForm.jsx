@@ -69,7 +69,7 @@ function SalesForm({ onSubmit, customers, user }) {
   };
 
   return (
-    <div className="bg-white p-6 rounded-xl shadow-lg">
+    <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
       <h2 className="text-xl font-semibold mb-6 flex items-center gap-2">
         <Plus className="w-5 h-5" />
         Add Sales Entry

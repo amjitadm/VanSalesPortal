@@ -188,7 +188,7 @@ function VanSalesPortal() {
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
         <div className="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md">
           <div className="text-center mb-8">
-            <img src="/logo.png" alt="Company Logo" className="w-32 h-32 mx-auto mb-6 object-contain" />
+            <img src="/logo.png" alt="Company Logo" className="w-16 h-16 mx-auto mb-4 object-contain" />
             <h1 className="text-3xl font-bold text-gray-900 mb-2">Van Sales Portal</h1>
             <p className="text-gray-600">Modern Sales Management System</p>
           </div>
@@ -214,7 +214,10 @@ function VanSalesPortal() {
       {/* Sidebar */}
       <div className={`fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-lg transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0`}>
         <div className="flex items-center justify-between h-16 px-6 border-b border-gray-200">
-          <img src="/logo.png" alt="Logo" className="h-10 w-auto" />
+          <div className="flex items-center space-x-3">
+            <img src="/logo.png" alt="Logo" className="h-8 w-8 object-contain" />
+            <span className="font-semibold text-gray-900 text-lg">Van Sales</span>
+          </div>
           <button
             onClick={() => setSidebarOpen(false)}
             className="lg:hidden text-gray-500 hover:text-gray-700"

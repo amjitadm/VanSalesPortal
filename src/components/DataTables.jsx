@@ -268,7 +268,7 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
   ];
 
   return (
-    <div className="bg-white rounded-xl shadow-lg">
+    <div className="bg-white rounded-xl shadow-lg border border-gray-100">
       {/* Header */}
       <div className="p-6 border-b border-gray-200">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">

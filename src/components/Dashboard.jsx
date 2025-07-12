@@ -37,7 +37,7 @@ function Dashboard({ entries, expenses, customers, stockMovements }) {
     <div className="space-y-6">
       {/* Key Metrics */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="bg-gradient-to-r from-blue-500 to-blue-600 text-white p-6 rounded-xl shadow-lg">
+        <div className="bg-gradient-to-r from-blue-500 to-blue-600 text-white p-6 rounded-xl shadow-lg transform hover:scale-105 transition-transform duration-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-blue-100 text-sm">Today's Sales</p>
@@ -47,7 +47,7 @@ function Dashboard({ entries, expenses, customers, stockMovements }) {
           </div>
         </div>
         
-        <div className="bg-gradient-to-r from-red-500 to-red-600 text-white p-6 rounded-xl shadow-lg">
+        <div className="bg-gradient-to-r from-red-500 to-red-600 text-white p-6 rounded-xl shadow-lg transform hover:scale-105 transition-transform duration-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-red-100 text-sm">Today's Expenses</p>
@@ -57,7 +57,7 @@ function Dashboard({ entries, expenses, customers, stockMovements }) {
           </div>
         </div>
         
-        <div className="bg-gradient-to-r from-green-500 to-green-600 text-white p-6 rounded-xl shadow-lg">
+        <div className="bg-gradient-to-r from-green-500 to-green-600 text-white p-6 rounded-xl shadow-lg transform hover:scale-105 transition-transform duration-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-green-100 text-sm">Total Customers</p>
@@ -67,7 +67,7 @@ function Dashboard({ entries, expenses, customers, stockMovements }) {
           </div>
         </div>
         
-        <div className="bg-gradient-to-r from-purple-500 to-purple-600 text-white p-6 rounded-xl shadow-lg">
+        <div className="bg-gradient-to-r from-purple-500 to-purple-600 text-white p-6 rounded-xl shadow-lg transform hover:scale-105 transition-transform duration-200">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-purple-100 text-sm">Active Routes</p>
@@ -79,7 +79,7 @@ function Dashboard({ entries, expenses, customers, stockMovements }) {
       </div>
 
       {/* Weekly Sales Chart */}
-      <div className="bg-white p-6 rounded-xl shadow-lg">
+      <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
         <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
           <Calendar className="w-5 h-5" />
           Weekly Sales Overview
@@ -104,19 +104,19 @@ function Dashboard({ entries, expenses, customers, stockMovements }) {
 
       {/* Quick Stats */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white p-6 rounded-xl shadow-lg">
+        <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-200">
           <h4 className="font-semibold text-gray-800 mb-2">Net Profit Today</h4>
           <p className={`text-2xl font-bold ${todaysSales - todaysExpenses >= 0 ? 'text-green-600' : 'text-red-600'}`}>
             ${(todaysSales - todaysExpenses).toFixed(2)}
           </p>
         </div>
         
-        <div className="bg-white p-6 rounded-xl shadow-lg">
+        <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-200">
           <h4 className="font-semibold text-gray-800 mb-2">Total Entries</h4>
           <p className="text-2xl font-bold text-blue-600">{entries.length}</p>
         </div>
         
-        <div className="bg-white p-6 rounded-xl shadow-lg">
+        <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-200">
           <h4 className="font-semibold text-gray-800 mb-2">Stock Movements</h4>
           <p className="text-2xl font-bold text-purple-600">{stockMovements.length}</p>
         </div>
