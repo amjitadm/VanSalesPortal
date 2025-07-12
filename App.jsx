@@ -189,8 +189,7 @@ function VanSalesPortal() {
         <div className="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md">
           <div className="text-center mb-8"><center>
             <img src="/logo.png" alt="Company Logo" className="w-01 h-01 mx-auto mb-4 object-contain" />
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Van Sales Portal</h1>
-            <p className="text-gray-600">Modern Sales Management System</p>
+            <h1 className="text-3xl font-bold text-gray-1900 mb-2">Van Sales Portal</h1>
           </div>
           
           <button 
@@ -254,8 +253,7 @@ function VanSalesPortal() {
               </span>
             </div>
             <div className="ml-3">
-              <p className="text-sm font-medium text-gray-900">Logged in as {user.username}</p>
-              < className="text-xs text-gray-500">with {user.role} privilages
+              <p className="text-sm font-medium text-gray-900">Logged in as {user.username} with {user.role} privilages</p>
             </div>
           </div>
           <button
