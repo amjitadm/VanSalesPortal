@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import * as XLSX from 'xlsx';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 
 const USERS = [
   { username: 'admin', password: 'password123' },
@@ -87,9 +88,14 @@ function VanSalesPortal() {
     return true;
   });
 
+  const chartData = Object.entries(summary).map(([key, total]) => {
+    const [date, salesperson] = key.split('-');
+    return { date, salesperson, total };
+  });
+
   return (
     <div className="p-6 max-w-6xl mx-auto space-y-8">
-      <h1 className="text-2xl font-bold">Van Sales Portal</h1>
+      <h1 className="text-3xl font-bold text-blue-800">Van Sales Portal</h1>
 
       {!user ? (
         <button onClick={handleLogin} className="bg-blue-600 text-white px-4 py-2 rounded">Login</button>
@@ -99,17 +105,17 @@ function VanSalesPortal() {
 
       {user && (
         <>
-          <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-4 bg-gray-100 p-4 rounded-xl">
+          <form onSubmit={handleSubmit} className="grid grid-cols-2 md:grid-cols-3 gap-4 bg-gray-100 p-4 rounded-xl">
             <input name="date" value={form.date} onChange={handleChange} placeholder="Date" type="date" className="p-2 border rounded" />
             <input name="product" value={form.product} onChange={handleChange} placeholder="Product" className="p-2 border rounded" />
             <input name="quantity" value={form.quantity} onChange={handleChange} placeholder="Quantity" type="number" className="p-2 border rounded" />
             <input name="price" value={form.price} onChange={handleChange} placeholder="Unit Price" type="number" className="p-2 border rounded" />
-            <button type="submit" className="col-span-2 bg-blue-600 text-white rounded p-2">Add Entry</button>
+            <button type="submit" className="col-span-2 md:col-span-1 bg-blue-600 text-white rounded p-2 hover:bg-blue-700">Add Entry</button>
           </form>
 
-          <div className="flex gap-4">
-            <button onClick={exportToExcel} className="bg-green-600 text-white rounded p-2">Export to Excel</button>
-            <label className="bg-yellow-500 text-white rounded p-2 cursor-pointer">
+          <div className="flex flex-wrap gap-4 items-center">
+            <button onClick={exportToExcel} className="bg-green-600 text-white rounded p-2 hover:bg-green-700">Export to Excel</button>
+            <label className="bg-yellow-500 text-white rounded p-2 cursor-pointer hover:bg-yellow-600">
               Import from Excel
               <input type="file" accept=".xlsx, .xls" onChange={importFromExcel} className="hidden" />
             </label>
@@ -120,9 +126,9 @@ function VanSalesPortal() {
             </select>
           </div>
 
-          <div className="bg-white shadow-md rounded-xl p-4">
+          <div className="bg-white shadow-md rounded-xl p-4 overflow-auto">
             <h2 className="text-xl font-semibold mb-4">Sales Summary</h2>
-            <table className="w-full table-auto border">
+            <table className="min-w-full table-auto border">
               <thead className="bg-gray-200">
                 <tr>
                   <th className="p-2 border">Date</th>
@@ -135,13 +141,13 @@ function VanSalesPortal() {
               </thead>
               <tbody>
                 {filteredEntries.map((entry, idx) => (
-                  <tr key={idx}>
-                    <td className="p-2 border text-center">{entry.date}</td>
-                    <td className="p-2 border text-center">{entry.salesperson || 'N/A'}</td>
-                    <td className="p-2 border text-center">{entry.product}</td>
-                    <td className="p-2 border text-center">{entry.quantity}</td>
-                    <td className="p-2 border text-center">{entry.price}</td>
-                    <td className="p-2 border text-center">{parseFloat(entry.total).toFixed(2)}</td>
+                  <tr key={idx} className="text-center hover:bg-gray-100">
+                    <td className="p-2 border">{entry.date}</td>
+                    <td className="p-2 border">{entry.salesperson || 'N/A'}</td>
+                    <td className="p-2 border">{entry.product}</td>
+                    <td className="p-2 border">{entry.quantity}</td>
+                    <td className="p-2 border">{entry.price}</td>
+                    <td className="p-2 border">{parseFloat(entry.total).toFixed(2)}</td>
                   </tr>
                 ))}
                 {filteredEntries.length === 0 && (
@@ -155,7 +161,7 @@ function VanSalesPortal() {
 
           <div className="bg-white shadow-md rounded-xl p-4">
             <h2 className="text-xl font-semibold mb-4">Total Sales per Day & Salesperson</h2>
-            <table className="w-full table-auto border">
+            <table className="w-full table-auto border mb-6">
               <thead className="bg-gray-100">
                 <tr>
                   <th className="p-2 border">Date</th>
@@ -167,10 +173,10 @@ function VanSalesPortal() {
                 {Object.entries(summary).map(([key, value], idx) => {
                   const [date, person] = key.split('-');
                   return (
-                    <tr key={idx}>
-                      <td className="p-2 border text-center">{date}</td>
-                      <td className="p-2 border text-center">{person}</td>
-                      <td className="p-2 border text-center">{value.toFixed(2)}</td>
+                    <tr key={idx} className="text-center">
+                      <td className="p-2 border">{date}</td>
+                      <td className="p-2 border">{person}</td>
+                      <td className="p-2 border">{value.toFixed(2)}</td>
                     </tr>
                   );
                 })}
@@ -181,6 +187,16 @@ function VanSalesPortal() {
                 )}
               </tbody>
             </table>
+
+            <h3 className="text-lg font-semibold mb-2">Graphical Overview</h3>
+            <ResponsiveContainer width="100%" height={300}>
+              <BarChart data={chartData} layout="vertical">
+                <XAxis type="number" />
+                <YAxis type="category" dataKey="salesperson" />
+                <Tooltip />
+                <Bar dataKey="total" fill="#3b82f6" />
+              </BarChart>
+            </ResponsiveContainer>
           </div>
         </>
       )}
