@@ -1,211 +1,363 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as XLSX from 'xlsx';
-import logo from '/logo.png';
+import { 
+  LayoutDashboard, 
+  Plus, 
+  Minus, 
+  Users, 
+  Package, 
+  FileText, 
+  LogOut, 
+  Menu,
+  X
+} from 'lucide-react';
+
+import Dashboard from './src/components/Dashboard';
+import SalesForm from './src/components/SalesForm';
+import ExpenseForm from './src/components/ExpenseForm';
+import CustomerForm from './src/components/CustomerForm';
+import StockForm from './src/components/StockForm';
+import DataTables from './src/components/DataTables';
 
 const USERS = [
-  { username: 'admin', password: 'admin123' },
-  { username: 'fsuser', password: 'fsuser456' }
+  { username: 'admin', password: 'admin123', role: 'admin' },
+  { username: 'fsuser', password: 'fsuser456', role: 'salesperson' }
 ];
 
 function VanSalesPortal() {
-  const [form, setForm] = useState({
-    date: '',
-    product: '',
-    quantity: '',
-    price: '',
-    salesperson: '',
-    van: '',
-    route: '',
-    stock: '',
-    customer: '',
-    remarks: ''
-  });
-
-  const [entries, setEntries] = useState([]);
   const [user, setUser] = useState(null);
-  const [filter, setFilter] = useState('all');
-  const [summary, setSummary] = useState({});
+  const [activeTab, setActiveTab] = useState('dashboard');
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  
+  // Data states
+  const [entries, setEntries] = useState([]);
+  const [expenses, setExpenses] = useState([]);
+  const [customers, setCustomers] = useState([]);
+  const [stockMovements, setStockMovements] = useState([]);
 
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
+  // Load data from localStorage on component mount
+  useEffect(() => {
+    const savedEntries = localStorage.getItem('vanSalesEntries');
+    const savedExpenses = localStorage.getItem('vanSalesExpenses');
+    const savedCustomers = localStorage.getItem('vanSalesCustomers');
+    const savedStock = localStorage.getItem('vanSalesStock');
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const total = parseFloat(form.quantity || 0) * parseFloat(form.price || 0);
-    const newEntry = { ...form, salesperson: user.username, total };
-    const updated = [...entries, newEntry];
-    setEntries(updated);
-    setForm({ date: '', product: '', quantity: '', price: '', salesperson: '', van: '', route: '', stock: '', customer: '', remarks: '' });
-    calculateSummary(updated);
-  };
+    if (savedEntries) setEntries(JSON.parse(savedEntries));
+    if (savedExpenses) setExpenses(JSON.parse(savedExpenses));
+    if (savedCustomers) setCustomers(JSON.parse(savedCustomers));
+    if (savedStock) setStockMovements(JSON.parse(savedStock));
+  }, []);
 
-  const calculateSummary = (entryList) => {
-    const sums = {};
-    for (const e of entryList) {
-      const key = `${e.date}-${e.salesperson}`;
-      sums[key] = (sums[key] || 0) + (parseFloat(e.total) || 0);
+  // Save data to localStorage whenever state changes
+  useEffect(() => {
+    localStorage.setItem('vanSalesEntries', JSON.stringify(entries));
+  }, [entries]);
+
+  useEffect(() => {
+    localStorage.setItem('vanSalesExpenses', JSON.stringify(expenses));
+  }, [expenses]);
+
+  useEffect(() => {
+    localStorage.setItem('vanSalesCustomers', JSON.stringify(customers));
+  }, [customers]);
+
+  useEffect(() => {
+    localStorage.setItem('vanSalesStock', JSON.stringify(stockMovements));
+  }, [stockMovements]);
+
+  const handleLogin = () => {
+    const username = prompt("Username:");
+    const password = prompt("Password:");
+    const found = USERS.find(u => u.username === username && u.password === password);
+    if (found) {
+      setUser(found);
+      setActiveTab('dashboard');
+    } else {
+      alert("Invalid credentials");
     }
-    setSummary(sums);
   };
 
-  const exportToExcel = () => {
-    const ws = XLSX.utils.json_to_sheet(entries);
+  const handleLogout = () => {
+    setUser(null);
+    setActiveTab('dashboard');
+    setSidebarOpen(false);
+  };
+
+  const addSalesEntry = (entry) => {
+    setEntries(prev => [...prev, entry]);
+    
+    // Update customer purchase history if customer exists
+    if (entry.customer) {
+      setCustomers(prev => prev.map(customer => {
+        if (customer.name === entry.customer) {
+          return {
+            ...customer,
+            totalPurchases: (customer.totalPurchases || 0) + parseFloat(entry.total),
+            lastPurchase: entry.date
+          };
+        }
+        return customer;
+      }));
+    }
+  };
+
+  const addExpense = (expense) => {
+    setExpenses(prev => [...prev, expense]);
+  };
+
+  const addCustomer = (customer) => {
+    setCustomers(prev => [...prev, customer]);
+  };
+
+  const addStockMovement = (movement) => {
+    setStockMovements(prev => [...prev, movement]);
+  };
+
+  const exportToExcel = (type = 'sales') => {
+    let data, filename;
+    
+    switch (type) {
+      case 'sales':
+        data = entries;
+        filename = 'van_sales.xlsx';
+        break;
+      case 'expenses':
+        data = expenses;
+        filename = 'van_expenses.xlsx';
+        break;
+      case 'customers':
+        data = customers;
+        filename = 'van_customers.xlsx';
+        break;
+      case 'stock':
+        data = stockMovements;
+        filename = 'van_stock_movements.xlsx';
+        break;
+      default:
+        data = entries;
+        filename = 'van_sales.xlsx';
+    }
+
+    const ws = XLSX.utils.json_to_sheet(data);
     const wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, "Sales");
-    XLSX.writeFile(wb, "van_sales.xlsx");
+    XLSX.utils.book_append_sheet(wb, ws, type.charAt(0).toUpperCase() + type.slice(1));
+    XLSX.writeFile(wb, filename);
   };
 
-  const importFromExcel = (e) => {
+  const importFromExcel = (e, type = 'sales') => {
     const file = e.target.files[0];
+    if (!file) return;
+
     const reader = new FileReader();
     reader.onload = (evt) => {
       const data = new Uint8Array(evt.target.result);
       const workbook = XLSX.read(data, { type: 'array' });
       const sheet = workbook.Sheets[workbook.SheetNames[0]];
       const json = XLSX.utils.sheet_to_json(sheet);
-      setEntries(json);
-      calculateSummary(json);
+      
+      switch (type) {
+        case 'sales':
+          setEntries(json);
+          break;
+        case 'expenses':
+          setExpenses(json);
+          break;
+        case 'customers':
+          setCustomers(json);
+          break;
+        case 'stock':
+          setStockMovements(json);
+          break;
+      }
     };
     reader.readAsArrayBuffer(file);
+    e.target.value = ''; // Reset file input
   };
 
-  const handleLogin = () => {
-    const username = prompt("Username:");
-    const password = prompt("Password:");
-    const found = USERS.find(u => u.username === username && u.password === password);
-    if (found) setUser(found);
-    else alert("Invalid credentials");
-  };
+  const menuItems = [
+    { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
+    { id: 'sales', label: 'Add Sales', icon: Plus },
+    { id: 'expenses', label: 'Add Expense', icon: Minus },
+    { id: 'customers', label: 'Add Customer', icon: Users },
+    { id: 'stock', label: 'Stock Movement', icon: Package },
+    { id: 'data', label: 'View Data', icon: FileText }
+  ];
 
-  const filteredEntries = entries.filter(entry => {
-    if (filter === 'all') return true;
-    const now = new Date();
-    const entryDate = new Date(entry.date);
-    if (filter === 'daily') {
-      return entryDate.toDateString() === now.toDateString();
-    }
-    if (filter === 'weekly') {
-      const weekAgo = new Date(now);
-      weekAgo.setDate(now.getDate() - 7);
-      return entryDate >= weekAgo && entryDate <= now;
-    }
-    return true;
-  });
+  if (!user) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
+        <div className="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md">
+          <div className="text-center mb-8">
+            <img src="/logo.png" alt="Company Logo" className="w-32 h-32 mx-auto mb-6 object-contain" />
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">Van Sales Portal</h1>
+            <p className="text-gray-600">Modern Sales Management System</p>
+          </div>
+          
+          <button 
+            onClick={handleLogin} 
+            className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors font-medium text-lg shadow-lg hover:shadow-xl"
+          >
+            LOGIN
+          </button>
+          
+          <div className="mt-6 text-center text-sm text-gray-500">
+            <p>Demo Credentials:</p>
+            <p>admin / admin123 | fsuser / fsuser456</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div className="min-h-screen bg-gray-50 font-sans px-4 py-8 text-sm md:text-base">
-      {!user ? (
-        <div className="flex flex-col items-center justify-center gap-4 text-center">
-          <img src="logo.png" alt="Company Logo" className="w-48 mb-4" />
-          <h1 className="text-3xl font-bold text-gray-800">Van Sales Portal</h1>
-          <button onClick={handleLogin} className="bg-gray-800 text-white px-6 py-2 rounded shadow hover:bg-gray-700">LOGIN</button>
+    <div className="min-h-screen bg-gray-50 flex">
+      {/* Sidebar */}
+      <div className={`fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-lg transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0`}>
+        <div className="flex items-center justify-between h-16 px-6 border-b border-gray-200">
+          <img src="/logo.png" alt="Logo" className="h-10 w-auto" />
+          <button
+            onClick={() => setSidebarOpen(false)}
+            className="lg:hidden text-gray-500 hover:text-gray-700"
+          >
+            <X className="w-6 h-6" />
+          </button>
         </div>
-      ) : (
-        <div className="max-w-7xl mx-auto space-y-10">
-           <img src="logo.png" alt="Company Logo" className="w-48 mb-4" />
-          <h1 className="text-4xl font-bold text-center text-blue-900">Van Sales Portal</h1>
-          <p className="text-center text-gray-600">Logged in as <strong>{user.username}</strong></p>
-
-          <form onSubmit={handleSubmit} className="grid grid-cols-2 md:grid-cols-3 gap-4 bg-white p-6 rounded-xl shadow">
-            <input name="date" value={form.date} onChange={handleChange} placeholder="Date" type="date" className="p-2 border rounded w-full" />
-            <input name="product" value={form.product} onChange={handleChange} placeholder="Product" className="p-2 border rounded w-full" />
-            <input name="quantity" value={form.quantity} onChange={handleChange} placeholder="Quantity" type="number" className="p-2 border rounded w-full" />
-            <input name="price" value={form.price} onChange={handleChange} placeholder="Unit Price" type="number" className="p-2 border rounded w-full" />
-            <input name="vanNo" value={form.vanNo} onChange={handleChange} placeholder="Van No" className="p-2 border rounded w-full" />
-            <input name="route" value={form.route} onChange={handleChange} placeholder="Route" className="p-2 border rounded w-full" />
-            <input name="stockLoaded" value={form.stockLoaded} onChange={handleChange} placeholder="Stock Loaded" className="p-2 border rounded w-full" />
-            <input name="customerName" value={form.customerName} onChange={handleChange} placeholder="Customer Name" className="p-2 border rounded w-full" />
-            <input name="remarks" value={form.remarks} onChange={handleChange} placeholder="Remarks" className="p-2 border rounded w-full" />
-            <button type="submit" className="col-span-2 md:col-span-1 bg-blue-600 text-white rounded p-2 hover:bg-blue-700">Add Entry</button>
-          </form>
-
-          <div className="flex flex-wrap gap-4 items-center justify-center">
-            <button onClick={exportToExcel} className="bg-green-600 text-white rounded px-4 py-2 hover:bg-green-700">Export to Excel</button>
-            <label className="bg-yellow-500 text-white rounded px-4 py-2 cursor-pointer hover:bg-yellow-600">
-              Import from Excel
-              <input type="file" accept=".xlsx, .xls" onChange={importFromExcel} className="hidden" />
-            </label>
-            <select onChange={(e) => setFilter(e.target.value)} className="border p-2 rounded">
-              <option value="all">All</option>
-              <option value="daily">Today</option>
-              <option value="weekly">This Week</option>
-            </select>
+        
+        <nav className="mt-6 px-3">
+          <div className="space-y-1">
+            {menuItems.map((item) => {
+              const Icon = item.icon;
+              return (
+                <button
+                  key={item.id}
+                  onClick={() => {
+                    setActiveTab(item.id);
+                    setSidebarOpen(false);
+                  }}
+                  className={`w-full flex items-center px-3 py-3 text-sm font-medium rounded-lg transition-colors ${
+                    activeTab === item.id
+                      ? 'bg-blue-100 text-blue-700 border-r-2 border-blue-700'
+                      : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
+                  }`}
+                >
+                  <Icon className="w-5 h-5 mr-3" />
+                  {item.label}
+                </button>
+              );
+            })}
           </div>
-
-          <div className="bg-white shadow rounded-xl p-4 overflow-auto">
-            <h2 className="text-2xl font-semibold mb-4 text-center">Sales Summary</h2>
-            <table className="min-w-full table-auto border text-sm md:text-base">
-              <thead className="bg-gray-200">
-                <tr>
-                  <th className="p-2 border">Date</th>
-                  <th className="p-2 border">Salesperson</th>
-                  <th className="p-2 border">Product</th>
-                  <th className="p-2 border">Quantity</th>
-                  <th className="p-2 border">Unit Price</th>
-                  <th className="p-2 border">Van No</th>
-                  <th className="p-2 border">Route</th>
-                  <th className="p-2 border">Stock Loaded</th>
-                  <th className="p-2 border">Customer Name</th>
-                  <th className="p-2 border">Remarks</th>
-                  <th className="p-2 border">Total</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredEntries.map((entry, idx) => (
-                  <tr key={idx} className="text-center hover:bg-gray-100">
-                    <td className="p-2 border">{entry.date}</td>
-                    <td className="p-2 border">{entry.salesperson || 'N/A'}</td>
-                    <td className="p-2 border">{entry.product}</td>
-                    <td className="p-2 border">{entry.quantity}</td>
-                    <td className="p-2 border">{entry.price}</td>
-                    <td className="p-2 border">{entry.vanNo}</td>
-                    <td className="p-2 border">{entry.route}</td>
-                    <td className="p-2 border">{entry.stockLoaded}</td>
-                    <td className="p-2 border">{entry.customerName}</td>
-                    <td className="p-2 border">{entry.remarks}</td>
-                    <td className="p-2 border">{parseFloat(entry.total).toFixed(2)}</td>
-                  </tr>
-                ))}
-                {filteredEntries.length === 0 && (
-                  <tr>
-                    <td colSpan="11" className="p-4 text-center text-gray-400">No sales logged for selected period.</td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
+        </nav>
+        
+        <div className="absolute bottom-0 w-full p-4 border-t border-gray-200">
+          <div className="flex items-center mb-4">
+            <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+              <span className="text-white text-sm font-medium">
+                {user.username.charAt(0).toUpperCase()}
+              </span>
+            </div>
+            <div className="ml-3">
+              <p className="text-sm font-medium text-gray-900">{user.username}</p>
+              <p className="text-xs text-gray-500">{user.role}</p>
+            </div>
           </div>
-
-          <div className="bg-white shadow rounded-xl p-4 overflow-auto">
-            <h2 className="text-2xl font-semibold mb-4 text-center">Total Sales per Day & Salesperson</h2>
-            <table className="min-w-full table-auto border text-sm md:text-base">
-              <thead className="bg-gray-100">
-                <tr>
-                  <th className="p-2 border">Date</th>
-                  <th className="p-2 border">Salesperson</th>
-                  <th className="p-2 border">Total Sales</th>
-                </tr>
-              </thead>
-              <tbody>
-                {Object.entries(summary).map(([key, value], idx) => {
-                  const [date, person] = key.split('-');
-                  return (
-                    <tr key={idx} className="text-center hover:bg-gray-100">
-                      <td className="p-2 border">{date}</td>
-                      <td className="p-2 border">{person}</td>
-                      <td className="p-2 border">{value.toFixed(2)}</td>
-                    </tr>
-                  );
-                })}
-                {Object.keys(summary).length === 0 && (
-                  <tr>
-                    <td colSpan="3" className="p-4 text-center text-gray-400">No summary available.</td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
-          </div>
+          <button
+            onClick={handleLogout}
+            className="w-full flex items-center px-3 py-2 text-sm text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+          >
+            <LogOut className="w-4 h-4 mr-3" />
+            Logout
+          </button>
         </div>
+      </div>
+
+      {/* Main Content */}
+      <div className="flex-1 lg:ml-0">
+        {/* Header */}
+        <header className="bg-white shadow-sm border-b border-gray-200">
+          <div className="flex items-center justify-between h-16 px-6">
+            <div className="flex items-center">
+              <button
+                onClick={() => setSidebarOpen(true)}
+                className="lg:hidden text-gray-500 hover:text-gray-700 mr-4"
+              >
+                <Menu className="w-6 h-6" />
+              </button>
+              <h1 className="text-xl font-semibold text-gray-900">
+                {menuItems.find(item => item.id === activeTab)?.label || 'Dashboard'}
+              </h1>
+            </div>
+            
+            <div className="flex items-center space-x-4">
+              <label className="bg-green-600 text-white px-4 py-2 rounded-lg cursor-pointer hover:bg-green-700 transition-colors text-sm">
+                Import Excel
+                <input 
+                  type="file" 
+                  accept=".xlsx, .xls" 
+                  onChange={(e) => importFromExcel(e, activeTab === 'data' ? 'sales' : activeTab)} 
+                  className="hidden" 
+                />
+              </label>
+            </div>
+          </div>
+        </header>
+
+        {/* Page Content */}
+        <main className="p-6">
+          {activeTab === 'dashboard' && (
+            <Dashboard 
+              entries={entries} 
+              expenses={expenses} 
+              customers={customers} 
+              stockMovements={stockMovements} 
+            />
+          )}
+          
+          {activeTab === 'sales' && (
+            <SalesForm 
+              onSubmit={addSalesEntry} 
+              customers={customers} 
+              user={user} 
+            />
+          )}
+          
+          {activeTab === 'expenses' && (
+            <ExpenseForm 
+              onSubmit={addExpense} 
+              user={user} 
+            />
+          )}
+          
+          {activeTab === 'customers' && (
+            <CustomerForm 
+              onSubmit={addCustomer} 
+            />
+          )}
+          
+          {activeTab === 'stock' && (
+            <StockForm 
+              onSubmit={addStockMovement} 
+              user={user} 
+            />
+          )}
+          
+          {activeTab === 'data' && (
+            <DataTables 
+              entries={entries} 
+              expenses={expenses} 
+              customers={customers} 
+              stockMovements={stockMovements} 
+              onExport={exportToExcel} 
+            />
+          )}
+        </main>
+      </div>
+
+      {/* Sidebar Overlay */}
+      {sidebarOpen && (
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
+          onClick={() => setSidebarOpen(false)}
+        />
       )}
     </div>
   );

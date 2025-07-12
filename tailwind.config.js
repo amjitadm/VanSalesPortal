@@ -1,5 +1,9 @@
 export default {
-  content: ["/index.html", "/VanSalesPortal.jsx"],
+  content: [
+    "./index.html",
+    "./App.jsx",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
   theme: {
     extend: {},
   },
