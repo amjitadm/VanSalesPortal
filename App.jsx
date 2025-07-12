@@ -187,7 +187,7 @@ function VanSalesPortal() {
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
         <div className="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md">
-          <div className="text-center mb-8">
+          <div className="text-center mb-8"><center>
             <img src="/logo.png" alt="Company Logo" className="w-01 h-01 mx-auto mb-4 object-contain" />
             <h1 className="text-3xl font-bold text-gray-900 mb-2">Van Sales Portal</h1>
             <p className="text-gray-600">Modern Sales Management System</p>
@@ -198,12 +198,7 @@ function VanSalesPortal() {
             className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors font-medium text-lg shadow-lg hover:shadow-xl"
           >
             LOGIN
-          </button>
-          
-          <div className="mt-6 text-center text-sm text-gray-500">
-            <p>Demo Credentials:</p>
-            <p>admin / admin123 | fsuser / fsuser456</p>
-          </div>
+          </button></center>
         </div>
       </div>
     );
@@ -214,9 +209,9 @@ function VanSalesPortal() {
       {/* Sidebar */}
       <div className={`fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-lg transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0`}>
         <div className="flex items-center justify-between h-16 px-6 border-b border-gray-200">
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-3"><center>
             <img src="/logo.png" alt="Logo" className="h-8 w-8 object-contain" />
-            <span className="font-semibold text-gray-900 text-lg">Van Sales</span>
+            <span className="font-semibold text-gray-900 text-lg">Van Sales Summary DashBoard</span>
           </div>
           <button
             onClick={() => setSidebarOpen(false)}
@@ -259,8 +254,8 @@ function VanSalesPortal() {
               </span>
             </div>
             <div className="ml-3">
-              <p className="text-sm font-medium text-gray-900">{user.username}</p>
-              <p className="text-xs text-gray-500">{user.role}</p>
+              <p className="text-sm font-medium text-gray-900">Logged in as {user.username}</p>
+              < className="text-xs text-gray-500">with {user.role} privilages
             </div>
           </div>
           <button
