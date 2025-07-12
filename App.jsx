@@ -92,13 +92,13 @@ function VanSalesPortal() {
     <div className="p-6 max-w-6xl mx-auto space-y-8 text-sm md:text-base">
       {!user ? (
         <div className="flex flex-col items-center space-y-6 text-center">
-          <img src={/logo.png} alt="Company Logo" className="w-60"/>
+          <img src="/logo.png" alt="Company Logo" className="w-60"/>
           <h1 className="text-3xl font-bold text-gray-900">Van Sales Portal</h1>
           <button onClick={handleLogin} className="bg-gray-700 text-white text-lg px-6 py-2 rounded shadow hover:bg-gray-800">LOGIN</button>
         </div>
       ) : (
         <>
-          <img src={/logo.png} alt="Company Logo" className="w-60"/>
+          <img src="/logo.png" alt="Company Logo" className="w-60"/>
           <h1 className="text-3xl font-bold text-blue-800 text-center">Van Sales Portal</h1>
           <p className="text-gray-600 text-center">Logged in as <strong>{user.username}</strong></p>
 
