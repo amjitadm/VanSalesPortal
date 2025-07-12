@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import * as XLSX from 'xlsx';
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 
 const USERS = [
-  { username: 'admin', password: 'password123' },
+  { username: 'admin', password: 'admin123' },
   { username: 'fsuser', password: 'fsuser456' }
 ];
 
@@ -88,19 +87,16 @@ function VanSalesPortal() {
     return true;
   });
 
-  const chartData = Object.entries(summary).map(([key, total]) => {
-    const [date, salesperson] = key.split('-');
-    return { date, salesperson, total };
-  });
-
   return (
-    <div className="p-6 max-w-6xl mx-auto space-y-8">
-      <h1 className="text-3xl font-bold text-blue-800">Van Sales Portal</h1>
+    <div className="p-6 max-w-6xl mx-auto space-y-8 text-sm md:text-base">
+      <h1 className="text-3xl font-bold text-blue-800 text-center">Van Sales Portal</h1>
 
       {!user ? (
-        <button onClick={handleLogin} className="bg-blue-600 text-white px-4 py-2 rounded">Login</button>
+        <div className="text-center">
+          <button onClick={handleLogin} className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Login</button>
+        </div>
       ) : (
-        <p className="text-gray-600">Logged in as <strong>{user.username}</strong></p>
+        <p className="text-gray-600 text-center">Logged in as <strong>{user.username}</strong></p>
       )}
 
       {user && (
@@ -128,7 +124,7 @@ function VanSalesPortal() {
 
           <div className="bg-white shadow-md rounded-xl p-4 overflow-auto">
             <h2 className="text-xl font-semibold mb-4">Sales Summary</h2>
-            <table className="min-w-full table-auto border">
+            <table className="min-w-full table-auto border text-sm md:text-base">
               <thead className="bg-gray-200">
                 <tr>
                   <th className="p-2 border">Date</th>
@@ -159,9 +155,9 @@ function VanSalesPortal() {
             </table>
           </div>
 
-          <div className="bg-white shadow-md rounded-xl p-4">
+          <div className="bg-white shadow-md rounded-xl p-4 overflow-auto">
             <h2 className="text-xl font-semibold mb-4">Total Sales per Day & Salesperson</h2>
-            <table className="w-full table-auto border mb-6">
+            <table className="min-w-full table-auto border text-sm md:text-base">
               <thead className="bg-gray-100">
                 <tr>
                   <th className="p-2 border">Date</th>
@@ -173,7 +169,7 @@ function VanSalesPortal() {
                 {Object.entries(summary).map(([key, value], idx) => {
                   const [date, person] = key.split('-');
                   return (
-                    <tr key={idx} className="text-center">
+                    <tr key={idx} className="text-center hover:bg-gray-100">
                       <td className="p-2 border">{date}</td>
                       <td className="p-2 border">{person}</td>
                       <td className="p-2 border">{value.toFixed(2)}</td>
@@ -187,16 +183,6 @@ function VanSalesPortal() {
                 )}
               </tbody>
             </table>
-
-            <h3 className="text-lg font-semibold mb-2">Graphical Overview</h3>
-            <ResponsiveContainer width="100%" height={300}>
-              <BarChart data={chartData} layout="vertical">
-                <XAxis type="number" />
-                <YAxis type="category" dataKey="salesperson" />
-                <Tooltip />
-                <Bar dataKey="total" fill="#3b82f6" />
-              </BarChart>
-            </ResponsiveContainer>
           </div>
         </>
       )}
