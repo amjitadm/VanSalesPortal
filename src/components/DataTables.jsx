@@ -107,7 +107,7 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
       </div>
     );
   };
-    
+
     return (
       <div className="overflow-x-auto">
         <table className="min-w-full table-auto">
