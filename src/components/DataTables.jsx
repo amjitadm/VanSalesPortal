@@ -194,10 +194,7 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
       </div>
     );
         }
-        
-  const StockTable = () => {
-    const filteredStock = filterData(stockMovements, 'stock');
-    
+   
     return (
       <div className="overflow-x-auto">
         <table className="min-w-full table-auto">
