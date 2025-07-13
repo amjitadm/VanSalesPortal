@@ -41,7 +41,7 @@ function Dashboard({ entries, expenses, customers, stockMovements }) {
   const routeGrowth = 5.7;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 p-6"><center>
       <div className="max-w-7xl mx-auto space-y-8">
         
         {/* Header Section */}
@@ -232,7 +232,7 @@ function Dashboard({ entries, expenses, customers, stockMovements }) {
             </button>
           </div>
         </div>
-      </div>
+      </div></center>
     </div>
   );
 }
