@@ -248,13 +248,6 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
     );
   };
 
-  const tabs = [
-    { id: 'sales', label: 'Sales', count: entries.length },
-    { id: 'expenses', label: 'Expenses', count: expenses.length },
-    { id: 'customers', label: 'Customers', count: customers.length },
-    { id: 'stock', label: 'Stock', count: stockMovements.length }
-  ];
-
   return (
     <div className="bg-white rounded-xl shadow-lg border border-gray-100">
       {/* Header */}
