@@ -327,5 +327,4 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
     </div></center>
   );
 }
-
 export default DataTables;
