@@ -107,9 +107,6 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
       </div>
     );
   };
-
-  const ExpensesTable = () => {
-    const filteredExpenses = filterData(expenses, 'expenses');
     
     return (
       <div className="overflow-x-auto">
