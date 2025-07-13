@@ -76,8 +76,8 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
                 <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">{entry.product}</td>
                 <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">{entry.customer || 'N/A'}</td>
                 <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">{entry.quantity}</td>
-                <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">${entry.price}</td>
-                <td className="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${parseFloat(entry.total).toFixed(2)}</td>
+                <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">QAR {entry.price}</td>
+                <td className="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">QAR {parseFloat(entry.total).toFixed(2)}</td>
                 <td className="px-4 py-4 whitespace-nowrap">
                   <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
                     entry.paymentMethod === 'cash' ? 'bg-green-100 text-green-800' :
@@ -135,7 +135,7 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
                   </span>
                 </td>
                 <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">{expense.description}</td>
-                <td className="px-4 py-4 whitespace-nowrap text-sm font-medium text-red-600">${parseFloat(expense.amount).toFixed(2)}</td>
+                <td className="px-4 py-4 whitespace-nowrap text-sm font-medium text-red-600">QAR {parseFloat(expense.amount).toFixed(2)}</td>
                 <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">{expense.van || 'N/A'}</td>
                 <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">{expense.receipt || 'N/A'}</td>
                 <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">
@@ -182,7 +182,7 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
                 <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">{customer.phone}</td>
                 <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">{customer.email || 'N/A'}</td>
                 <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">{customer.city || 'N/A'}</td>
-                <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">${customer.creditLimit || '0.00'}</td>
+                <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">QAR {customer.creditLimit || '0.00'}</td>
                 <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">
                   <div className="flex space-x-2">
                     <button className="text-blue-600 hover:text-blue-900">
