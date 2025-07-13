@@ -46,8 +46,8 @@ function Dashboard({ entries, expenses, customers, stockMovements }) {
         
         {/* Header Section */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">Sales Dashboard</h1>
-          <p className="text-lg text-gray-600">Real-time insights for your van sales operations</p>
+          <h1 className="text-4xl font-bold text-blue-1500 mb-2">Al Majid Food Service Sales Dashboard</h1>
+          <p className="text-lg text-blue-900">Real-time insights for your van sales operations</p>
         </div>
 
         {/* Key Metrics Grid */}
@@ -148,7 +148,6 @@ function Dashboard({ entries, expenses, customers, stockMovements }) {
                     }}
                   >
                     <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                      QAR {day.sales.toLocaleString()}
                     </div>
                   </div>
                   <span className="text-sm font-medium text-gray-700 mt-3">{day.day}</span>
@@ -210,28 +209,7 @@ function Dashboard({ entries, expenses, customers, stockMovements }) {
           </div>
         </div>
 
-        {/* Quick Actions */}
-        <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
-          <h3 className="text-xl font-bold text-gray-900 mb-6 text-center">Quick Actions</h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <button className="p-4 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl hover:from-blue-100 hover:to-blue-200 transition-all duration-300 hover:scale-105 border border-blue-200">
-              <DollarSign className="w-6 h-6 text-blue-600 mx-auto mb-2" />
-              <span className="text-sm font-medium text-blue-700">Add Sale</span>
-            </button>
-            <button className="p-4 bg-gradient-to-br from-red-50 to-red-100 rounded-xl hover:from-red-100 hover:to-red-200 transition-all duration-300 hover:scale-105 border border-red-200">
-              <TrendingUp className="w-6 h-6 text-red-600 mx-auto mb-2" />
-              <span className="text-sm font-medium text-red-700">Add Expense</span>
-            </button>
-            <button className="p-4 bg-gradient-to-br from-green-50 to-green-100 rounded-xl hover:from-green-100 hover:to-green-200 transition-all duration-300 hover:scale-105 border border-green-200">
-              <Users className="w-6 h-6 text-green-600 mx-auto mb-2" />
-              <span className="text-sm font-medium text-green-700">Add Customer</span>
-            </button>
-            <button className="p-4 bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl hover:from-purple-100 hover:to-purple-200 transition-all duration-300 hover:scale-105 border border-purple-200">
-              <Package className="w-6 h-6 text-purple-600 mx-auto mb-2" />
-              <span className="text-sm font-medium text-purple-700">Stock Move</span>
-            </button>
-          </div>
-        </div>
+       
       </div></center>
     </div>
   );
