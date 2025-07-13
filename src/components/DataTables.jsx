@@ -55,7 +55,7 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
     const filteredSales = filterData(entries, 'sales');
     
     return (
-      <div className="overflow-x-auto"><center>
+      <center><div className="overflow-x-auto">
         <table className="min-w-full table-auto">
           <thead className="bg-gray-50">
             <tr>
@@ -342,8 +342,8 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
         {activeTab === 'expenses' && <ExpensesTable />}
         {activeTab === 'customers' && <CustomersTable />}
         {activeTab === 'stock' && <StockTable />}
-      </div></center>
-    </div>
+      </div>
+    </div></center>
   );
 }
 
