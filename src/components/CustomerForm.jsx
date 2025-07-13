@@ -38,10 +38,10 @@ function CustomerForm({ onSubmit }) {
   };
 
   return (
-    <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
-      <h2 className="text-xl font-semibold mb-6 flex items-center gap-2">
-        <UserPlus className="w-5 h-5" />
-        Add New Customer
+    <div className="bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 p-8 rounded-3xl shadow-2xl border-4 border-gradient-to-r from-green-400 to-emerald-400">
+      <h2 className="text-3xl font-bold mb-8 flex items-center gap-3 bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+        <div className="text-4xl animate-bounce">👥</div>
+        🤝 Add New Customer 🌟
       </h2>
       
       <form onSubmit={handleSubmit} className="space-y-4">

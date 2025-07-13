@@ -186,17 +186,18 @@ function VanSalesPortal() {
   if (!user) {
     return (
       <center><div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
-        <div className="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md">
+        <div className="bg-gradient-to-br from-purple-100 via-pink-50 to-blue-100 rounded-3xl shadow-2xl p-8 w-full max-w-md border-4 border-gradient-to-r from-purple-400 to-pink-400">
           <div className="text-center mb-8">
-            <img src="logo.png" alt="Company Logo" className="w-01 h-01 mx-auto mb-4 object-contain" />
-            <h1 className="text-3xl font-bold text-gray-1900 mb-2">Van Sales Portal</h1>
+            <img src="logo.png" alt="Company Logo" className="w-20 h-20 mx-auto mb-4 object-contain animate-bounce" />
+            <h1 className="text-4xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent mb-2">🚐 Van Sales Portal 💰</h1>
+            <p className="text-lg text-purple-600 font-medium">✨ Your Playful Sales Companion ✨</p>
           </div>
           
           <button 
             onClick={handleLogin} 
-            className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors font-medium text-lg shadow-lg hover:shadow-xl"
+            className="w-full bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 text-white py-4 px-6 rounded-2xl hover:from-purple-600 hover:via-pink-600 hover:to-blue-600 transition-all duration-300 font-bold text-xl shadow-2xl hover:shadow-purple-500/50 hover:scale-105 transform"
           >
-            LOGIN
+            🔐 LOGIN & START SELLING! 🚀
           </button>
         </div>
       </div></center>
