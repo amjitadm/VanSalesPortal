@@ -105,8 +105,6 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
           <div className="text-center py-8 text-gray-500">No sales entries found</div>
         )}
       </div>
-    );
-  };
 
     return (
       <div className="overflow-x-auto">
@@ -154,11 +152,7 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
         )}
       </div>
     );
-  };
 
-  const CustomersTable = () => {
-    const filteredCustomers = filterData(customers, 'customers');
-    
     return (
       <div className="overflow-x-auto">
         <table className="min-w-full table-auto">
@@ -199,8 +193,8 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
         )}
       </div>
     );
-  };
-
+        }
+        
   const StockTable = () => {
     const filteredStock = filterData(stockMovements, 'stock');
     
