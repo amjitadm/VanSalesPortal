@@ -1,6 +1,39 @@
 body {
   font-family: sans-serif;
-  background-color: #f9f9f9;
+  background: linear-gradient(135deg, #1e3a8a, #3b82f6, #60a5fa);
   margin: 0;
   padding: 0;
+}
+
+/* Custom animations for van movement */
+@keyframes van-drive {
+  0% {
+    transform: translateX(-100px);
+  }
+  50% {
+    transform: translateX(calc(100vw + 100px));
+  }
+  51% {
+    transform: translateX(-100px) scaleX(-1);
+  }
+  100% {
+    transform: translateX(calc(100vw + 100px)) scaleX(-1);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.animate-van-drive {
+  animation: van-drive 20s linear infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
 }

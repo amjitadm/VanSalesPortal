@@ -43,6 +43,7 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
           : [item.product, item.van, item.location, item.type];
         
         return searchFields.some(field => 
+    </div>
           field && field.toLowerCase().includes(searchTerm.toLowerCase())
         );
       });
@@ -268,9 +269,10 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
   ];
 
   return (
-    <div className="bg-white rounded-xl shadow-lg border border-gray-100">
+    <div className="min-h-screen bg-gradient-to-br from-blue-900 via-blue-600 to-blue-400 p-6">
+      <div className="bg-gradient-to-br from-white via-blue-50 to-blue-100 rounded-xl shadow-2xl border-2 border-blue-300 max-w-7xl mx-auto backdrop-blur-sm">
       {/* Header */}
-      <div className="p-6 border-b border-gray-200">
+      <div className="p-6 border-b border-blue-200">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <h2 className="text-xl font-semibold text-gray-900">Data Management</h2>
           
@@ -305,7 +307,7 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
             {/* Export */}
             <button
               onClick={() => onExport(activeTab)}
-              className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+              className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-4 py-2 rounded-lg hover:from-blue-700 hover:to-blue-800 transition-colors shadow-lg"
             >
               <Download className="w-4 h-4" />
               Export
@@ -315,7 +317,7 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
       </div>
 
       {/* Tabs */}
-      <div className="border-b border-gray-200">
+      <div className="border-b border-blue-200">
         <nav className="flex space-x-8 px-6">
           {tabs.map((tab) => (
             <button
@@ -323,7 +325,7 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
               onClick={() => setActiveTab(tab.id)}
               className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors ${
                 activeTab === tab.id
-                  ? 'border-blue-500 text-blue-600'
+                  ? 'border-blue-600 text-blue-700'
                   : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
               }`}
             >

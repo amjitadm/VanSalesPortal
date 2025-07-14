@@ -47,7 +47,8 @@ function ExpenseForm({ onSubmit, user }) {
   ];
 
   return (
-    <center><div className="bg-gradient-to-br from-red-50 via-pink-50 to-rose-50 p-8 rounded-3xl shadow-2xl border-4 border-gradient-to-r from-red-400 to-pink-400">
+    <center><div className="min-h-screen bg-gradient-to-br from-blue-900 via-blue-600 to-blue-400 p-8">
+      <div className="bg-gradient-to-br from-white via-blue-50 to-blue-100 p-8 rounded-3xl shadow-2xl border-4 border-blue-300 max-w-4xl mx-auto backdrop-blur-sm">
       <h2 className="text-3xl font-bold mb-8 flex items-center gap-3 bg-gradient-to-r from-red-600 to-pink-600 bg-clip-text text-transparent">
         <div className="text-4xl animate-bounce">💸</div>
         💳 Add Expense 📉
@@ -154,6 +155,7 @@ function ExpenseForm({ onSubmit, user }) {
           Add Expense
         </button>
       </form>
+      </div>
     </div></center>
   );
 }
