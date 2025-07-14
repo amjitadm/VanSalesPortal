@@ -55,7 +55,7 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
     const filteredSales = filterData(entries, 'sales');
     
     return (
-      <center><div className="overflow-x-auto">
+      <div className="overflow-x-auto">
         <table className="min-w-full table-auto">
           <thead className="bg-gray-50">
             <tr>
@@ -105,7 +105,12 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
           <div className="text-center py-8 text-gray-500">No sales entries found</div>
         )}
       </div>
+    );
+  };
 
+  const ExpensesTable = () => {
+    const filteredExpenses = filterData(expenses, 'expenses');
+    
     return (
       <div className="overflow-x-auto">
         <table className="min-w-full table-auto">
@@ -152,7 +157,11 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
         )}
       </div>
     );
+  };
 
+  const CustomersTable = () => {
+    const filteredCustomers = filterData(customers, 'customers');
+    
     return (
       <div className="overflow-x-auto">
         <table className="min-w-full table-auto">
@@ -193,8 +202,11 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
         )}
       </div>
     );
-        }
-   
+  };
+
+  const StockTable = () => {
+    const filteredStock = filterData(stockMovements, 'stock');
+    
     return (
       <div className="overflow-x-auto">
         <table className="min-w-full table-auto">
@@ -247,6 +259,13 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
       </div>
     );
   };
+
+  const tabs = [
+    { id: 'sales', label: 'Sales', count: entries.length },
+    { id: 'expenses', label: 'Expenses', count: expenses.length },
+    { id: 'customers', label: 'Customers', count: customers.length },
+    { id: 'stock', label: 'Stock', count: stockMovements.length }
+  ];
 
   return (
     <div className="bg-white rounded-xl shadow-lg border border-gray-100">
@@ -324,7 +343,8 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
         {activeTab === 'customers' && <CustomersTable />}
         {activeTab === 'stock' && <StockTable />}
       </div>
-    </div></center>
+    </div>
   );
 }
+
 export default DataTables;
