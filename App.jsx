@@ -185,16 +185,16 @@ function VanSalesPortal() {
 
   if (!user) {
     return (
-      <center><div className="min-h-screen bg-gradient-to-br from-blue-900 via-blue-700 to-blue-500 flex items-center justify-center p-4">
-        <div className="bg-gradient-to-br from-blue-50 via-white to-blue-100 rounded-3xl shadow-2xl p-8 w-full max-w-md border-4 border-blue-400">
+      <center><div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
+        <div className="bg-gradient-to-br from-purple-100 via-pink-50 to-blue-100 rounded-3xl shadow-2xl p-8 w-full max-w-md border-4 border-gradient-to-r from-purple-400 to-pink-400">
           <div className="text-center mb-8">
             <img src="/logo.png" alt="Company Logo" className="w-20 h-20 mx-auto mb-4 object-contain animate-bounce" />
-            <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-800 via-blue-600 to-blue-900 bg-clip-text text-transparent mb-2">🚐 Van Sales Portal </h1>
+            <h1 className="text-4xl font-bold bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent mb-2">🚐 Van Sales Portal </h1>
           </div>
           
           <button 
             onClick={handleLogin} 
-            className="w-full bg-gradient-to-r from-blue-600 via-blue-500 to-blue-700 text-white py-4 px-6 rounded-2xl hover:from-blue-700 hover:via-blue-600 hover:to-blue-800 transition-all duration-300 font-bold text-xl shadow-2xl hover:shadow-blue-500/50 hover:scale-105 transform"
+            className="w-full bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 text-white py-4 px-6 rounded-2xl hover:from-purple-600 hover:via-pink-600 hover:to-blue-600 transition-all duration-300 font-bold text-xl shadow-2xl hover:shadow-purple-500/50 hover:scale-105 transform"
           >
             🔐 LOGIN
           </button>
@@ -204,9 +204,9 @@ function VanSalesPortal() {
   }
 
   return (
-    <center><div className="min-h-screen bg-gradient-to-br from-blue-100 via-blue-50 to-white flex">
+    <center><div className="min-h-screen bg-gray-50 flex">
       {/* Sidebar */}
-      <div className={`fixed inset-y-0 left-0 z-50 w-64 bg-gradient-to-b from-blue-50 to-white shadow-lg transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0`}>
+      <div className={`fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-lg transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0`}>
         <div className="flex items-center justify-between h-16 px-6 border-b border-gray-200">
           <div className="flex items-center space-x-3">
             <img src="/logo.png" alt="Logo" className="h-8 w-8 object-contain" />
@@ -233,7 +233,7 @@ function VanSalesPortal() {
                   }}
                   className={`w-full flex items-center px-3 py-3 text-sm font-medium rounded-lg transition-colors ${
                     activeTab === item.id
-                      ? 'bg-gradient-to-r from-blue-100 to-blue-200 text-blue-800 border-r-4 border-blue-600'
+                      ? 'bg-blue-100 text-blue-700 border-r-2 border-blue-700'
                       : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
                   }`}
                 >
@@ -269,7 +269,7 @@ function VanSalesPortal() {
       {/* Main Content */}
       <div className="flex-1 lg:ml-0">
         {/* Header */}
-        <header className="bg-gradient-to-r from-blue-50 to-white shadow-sm border-b border-blue-200">
+        <header className="bg-white shadow-sm border-b border-gray-200">
           <div className="flex items-center justify-between h-16 px-6">
             <div className="flex items-center">
               <button
@@ -284,7 +284,7 @@ function VanSalesPortal() {
             </div>
             
             <div className="flex items-center space-x-4">
-              <label className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-4 py-2 rounded-lg cursor-pointer hover:from-blue-700 hover:to-blue-800 transition-colors text-sm">
+              <label className="bg-green-600 text-white px-4 py-2 rounded-lg cursor-pointer hover:bg-green-700 transition-colors text-sm">
                 Import Excel
                 <input 
                   type="file" 

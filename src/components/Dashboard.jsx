@@ -41,56 +41,23 @@ function Dashboard({ entries, expenses, customers, stockMovements }) {
   const routeGrowth = 5.7;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-900 via-blue-600 to-blue-400 p-6 relative overflow-hidden"><center>
-      {/* Animated Van Background */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-0 animate-pulse">
-          <div className="text-6xl opacity-20 animate-bounce">🚐</div>
-        </div>
-        <div className="absolute top-40 right-20 animate-pulse delay-1000">
-          <div className="text-4xl opacity-15 animate-bounce">🚚</div>
-        </div>
-        <div className="absolute bottom-40 left-20 animate-pulse delay-2000">
-          <div className="text-5xl opacity-10 animate-bounce">🚛</div>
-        </div>
-        
-        {/* Moving Van Animation */}
-        <div className="absolute top-1/2 left-0 w-full">
-          <div className="animate-van-drive">
-            <div className="text-8xl opacity-5">🚐💨</div>
-          </div>
-        </div>
-        
-        {/* Floating Elements */}
-        <div className="absolute top-32 left-1/4 animate-float">
-          <div className="text-3xl opacity-20">💰</div>
-        </div>
-        <div className="absolute top-60 right-1/4 animate-float delay-500">
-          <div className="text-3xl opacity-20">📊</div>
-        </div>
-        <div className="absolute bottom-60 left-1/3 animate-float delay-1000">
-          <div className="text-3xl opacity-20">📈</div>
-        </div>
-      </div>
-      
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 p-6"><center>
       <div className="max-w-7xl mx-auto space-y-8">
         
         {/* Header Section */}
-        <div className="text-center mb-12 relative z-10">
-          <h1 className="text-5xl font-bold text-white mb-4 animate-pulse drop-shadow-lg">
-            🚐 Al Majid Food Service Sales Dashboard 📊
-          </h1>
-          <p className="text-xl text-blue-100 drop-shadow-md">Real-time insights for your van sales operations</p>
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-bold text-blue-1500 mb-2">Al Majid Food Service Sales Dashboard</h1>
+          <p className="text-lg text-blue-900">Real-time insights for your van sales operations</p>
         </div>
 
         {/* Key Metrics Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           
           {/* Today's Sales */}
-          <div className="bg-gradient-to-br from-white to-blue-50 rounded-2xl p-6 shadow-xl border-2 border-blue-200 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:scale-105 backdrop-blur-sm">
+          <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
             <div className="flex items-center justify-between mb-4">
-              <div className="p-3 bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-xl animate-pulse">
-                <DollarSign className="w-6 h-6 text-emerald-600 animate-bounce" />
+              <div className="p-3 bg-emerald-100 rounded-xl">
+                <DollarSign className="w-6 h-6 text-emerald-600" />
               </div>
               <div className="flex items-center text-emerald-600 text-sm font-medium">
                 <ArrowUp className="w-4 h-4 mr-1" />
@@ -104,10 +71,10 @@ function Dashboard({ entries, expenses, customers, stockMovements }) {
           </div>
 
           {/* Today's Expenses */}
-          <div className="bg-gradient-to-br from-white to-blue-50 rounded-2xl p-6 shadow-xl border-2 border-blue-200 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:scale-105 backdrop-blur-sm">
+          <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
             <div className="flex items-center justify-between mb-4">
-              <div className="p-3 bg-gradient-to-br from-red-100 to-red-200 rounded-xl animate-pulse">
-                <TrendingUp className="w-6 h-6 text-red-600 animate-bounce" />
+              <div className="p-3 bg-red-100 rounded-xl">
+                <TrendingUp className="w-6 h-6 text-red-600" />
               </div>
               <div className="flex items-center text-red-600 text-sm font-medium">
                 <ArrowDown className="w-4 h-4 mr-1" />
@@ -121,10 +88,10 @@ function Dashboard({ entries, expenses, customers, stockMovements }) {
           </div>
 
           {/* Total Customers */}
-          <div className="bg-gradient-to-br from-white to-blue-50 rounded-2xl p-6 shadow-xl border-2 border-blue-200 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:scale-105 backdrop-blur-sm">
+          <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
             <div className="flex items-center justify-between mb-4">
-              <div className="p-3 bg-gradient-to-br from-blue-100 to-blue-200 rounded-xl animate-pulse">
-                <Users className="w-6 h-6 text-blue-600 animate-bounce" />
+              <div className="p-3 bg-blue-100 rounded-xl">
+                <Users className="w-6 h-6 text-blue-600" />
               </div>
               <div className="flex items-center text-blue-600 text-sm font-medium">
                 <ArrowUp className="w-4 h-4 mr-1" />
@@ -138,10 +105,10 @@ function Dashboard({ entries, expenses, customers, stockMovements }) {
           </div>
 
           {/* Active Routes */}
-          <div className="bg-gradient-to-br from-white to-blue-50 rounded-2xl p-6 shadow-xl border-2 border-blue-200 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:scale-105 backdrop-blur-sm">
+          <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
             <div className="flex items-center justify-between mb-4">
-              <div className="p-3 bg-gradient-to-br from-purple-100 to-purple-200 rounded-xl animate-pulse">
-                <MapPin className="w-6 h-6 text-purple-600 animate-bounce" />
+              <div className="p-3 bg-purple-100 rounded-xl">
+                <MapPin className="w-6 h-6 text-purple-600" />
               </div>
               <div className="flex items-center text-purple-600 text-sm font-medium">
                 <ArrowUp className="w-4 h-4 mr-1" />
@@ -156,10 +123,10 @@ function Dashboard({ entries, expenses, customers, stockMovements }) {
         </div>
 
         {/* Charts and Analytics Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           
           {/* Weekly Sales Chart */}
-          <div className="lg:col-span-2 bg-gradient-to-br from-white to-blue-50 rounded-2xl p-8 shadow-xl border-2 border-blue-200 backdrop-blur-sm">
+          <div className="lg:col-span-2 bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
             <div className="flex items-center justify-between mb-8">
               <div>
                 <h3 className="text-xl font-bold text-gray-900">Weekly Sales Overview</h3>
@@ -174,7 +141,7 @@ function Dashboard({ entries, expenses, customers, stockMovements }) {
               {weeklyData.map((day, index) => (
                 <div key={index} className="flex flex-col items-center flex-1 group">
                   <div 
-                    className="bg-gradient-to-t from-blue-600 to-blue-400 rounded-t-lg w-full transition-all duration-300 group-hover:from-blue-700 group-hover:to-blue-500 group-hover:scale-110 shadow-lg relative animate-pulse"
+                    className="bg-gradient-to-t from-blue-500 to-blue-400 rounded-t-lg w-full transition-all duration-300 group-hover:from-blue-600 group-hover:to-blue-500 group-hover:scale-105 shadow-lg relative"
                     style={{ 
                       height: `${(day.sales / maxSales) * 200 + 20}px`,
                       minHeight: '20px'
@@ -194,7 +161,7 @@ function Dashboard({ entries, expenses, customers, stockMovements }) {
           <div className="space-y-6">
             
             {/* Net Profit Card */}
-            <div className="bg-gradient-to-br from-white to-blue-50 rounded-2xl p-6 shadow-xl border-2 border-blue-200 backdrop-blur-sm hover:scale-105 transition-all duration-300">
+            <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
               <div className="flex items-center justify-between mb-4">
                 <div className="p-3 bg-gradient-to-br from-emerald-100 to-teal-100 rounded-xl">
                   <Package className="w-6 h-6 text-emerald-600" />
@@ -213,7 +180,7 @@ function Dashboard({ entries, expenses, customers, stockMovements }) {
             </div>
 
             {/* Total Entries Card */}
-            <div className="bg-gradient-to-br from-white to-blue-50 rounded-2xl p-6 shadow-xl border-2 border-blue-200 backdrop-blur-sm hover:scale-105 transition-all duration-300">
+            <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
               <div className="flex items-center justify-between mb-4">
                 <div className="p-3 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-xl">
                   <Calendar className="w-6 h-6 text-blue-600" />
@@ -227,7 +194,7 @@ function Dashboard({ entries, expenses, customers, stockMovements }) {
             </div>
 
             {/* Stock Movements Card */}
-            <div className="bg-gradient-to-br from-white to-blue-50 rounded-2xl p-6 shadow-xl border-2 border-blue-200 backdrop-blur-sm hover:scale-105 transition-all duration-300">
+            <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
               <div className="flex items-center justify-between mb-4">
                 <div className="p-3 bg-gradient-to-br from-purple-100 to-pink-100 rounded-xl">
                   <Package className="w-6 h-6 text-purple-600" />
