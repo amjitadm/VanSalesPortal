@@ -47,10 +47,11 @@ function ExpenseForm({ onSubmit, user }) {
   ];
 
   return (
-    <center><div className="bg-gradient-to-br from-red-50 via-pink-50 to-rose-50 p-8 rounded-3xl shadow-2xl border-4 border-gradient-to-r from-red-400 to-pink-400">
-      <h2 className="text-3xl font-bold mb-8 flex items-center gap-3 bg-gradient-to-r from-red-600 to-pink-600 bg-clip-text text-transparent">
-        <div className="text-4xl animate-bounce">💸</div>
-        💳 Add Expense 📉
+    <div className="advanced-card p-8 fade-in">
+      <h2 className="text-3xl font-bold mb-8 text-center text-transparent bg-clip-text bg-gradient-danger">
+        <span className="text-4xl pulse-animation mr-3">💸</span>
+        Add Expense
+        <span className="text-4xl pulse-animation ml-3">📉</span>
       </h2>
       
       <form onSubmit={handleSubmit} className="space-y-4">
@@ -62,7 +63,7 @@ function ExpenseForm({ onSubmit, user }) {
               value={form.date} 
               onChange={handleChange} 
               type="date" 
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+              className="advanced-input"
               required
             />
           </div>
@@ -73,7 +74,7 @@ function ExpenseForm({ onSubmit, user }) {
               name="category" 
               value={form.category} 
               onChange={handleChange}
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+              className="advanced-input"
               required
             >
               {expenseCategories.map(cat => (
@@ -83,7 +84,7 @@ function ExpenseForm({ onSubmit, user }) {
           </div>
           
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Amount</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Amount (QAR)</label>
             <input 
               name="amount" 
               value={form.amount} 
@@ -91,7 +92,7 @@ function ExpenseForm({ onSubmit, user }) {
               placeholder="0.00" 
               type="number" 
               step="0.01"
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+              className="advanced-input"
               required
             />
           </div>
@@ -105,7 +106,7 @@ function ExpenseForm({ onSubmit, user }) {
               value={form.description} 
               onChange={handleChange} 
               placeholder="Expense description"
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+              className="advanced-input"
               required
             />
           </div>
@@ -117,7 +118,7 @@ function ExpenseForm({ onSubmit, user }) {
               value={form.van} 
               onChange={handleChange} 
               placeholder="Van #"
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+              className="advanced-input"
             />
           </div>
         </div>
@@ -130,7 +131,7 @@ function ExpenseForm({ onSubmit, user }) {
               value={form.receipt} 
               onChange={handleChange} 
               placeholder="Receipt #"
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+              className="advanced-input"
             />
           </div>
           
@@ -141,20 +142,17 @@ function ExpenseForm({ onSubmit, user }) {
               value={form.remarks} 
               onChange={handleChange} 
               placeholder="Additional notes"
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+              className="advanced-input"
             />
           </div>
         </div>
 
-        <button 
-          type="submit" 
-          className="w-full bg-red-600 text-white py-3 px-6 rounded-lg hover:bg-red-700 transition-colors flex items-center justify-center gap-2 font-medium"
-        >
+        <button type="submit" className="w-full btn-danger py-3 flex items-center justify-center gap-2">
           <Save className="w-5 h-5" />
           Add Expense
         </button>
       </form>
-    </div></center>
+    </div>
   );
 }
 

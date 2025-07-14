@@ -56,30 +56,30 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
     
     return (
       <div className="overflow-x-auto">
-        <table className="min-w-full table-auto">
-          <thead className="bg-gray-50">
+        <table className="advanced-table">
+          <thead>
             <tr>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Product</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Customer</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Qty</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Payment</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+              <th>Date</th>
+              <th>Product</th>
+              <th>Customer</th>
+              <th>Qty</th>
+              <th>Price (QAR)</th>
+              <th>Total (QAR)</th>
+              <th>Payment</th>
+              <th>Actions</th>
             </tr>
           </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
+          <tbody>
             {filteredSales.map((entry, idx) => (
-              <tr key={idx} className="hover:bg-gray-50">
-                <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">{entry.date}</td>
-                <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">{entry.product}</td>
-                <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">{entry.customer || 'N/A'}</td>
-                <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">{entry.quantity}</td>
-                <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">QAR {entry.price}</td>
-                <td className="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">QAR {parseFloat(entry.total).toFixed(2)}</td>
-                <td className="px-4 py-4 whitespace-nowrap">
-                  <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
+              <tr key={idx}>
+                <td>{entry.date}</td>
+                <td>{entry.product}</td>
+                <td>{entry.customer || 'N/A'}</td>
+                <td>{entry.quantity}</td>
+                <td>QAR {entry.price}</td>
+                <td className="font-medium">QAR {parseFloat(entry.total).toFixed(2)}</td>
+                <td>
+                  <span className={`status-badge ${
                     entry.paymentMethod === 'cash' ? 'bg-green-100 text-green-800' :
                     entry.paymentMethod === 'credit' ? 'bg-yellow-100 text-yellow-800' :
                     'bg-blue-100 text-blue-800'
@@ -87,7 +87,7 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
                     {entry.paymentMethod || 'cash'}
                   </span>
                 </td>
-                <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">
+                <td>
                   <div className="flex space-x-2">
                     <button className="text-blue-600 hover:text-blue-900">
                       <Eye className="w-4 h-4" />
@@ -113,32 +113,32 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
     
     return (
       <div className="overflow-x-auto">
-        <table className="min-w-full table-auto">
-          <thead className="bg-gray-50">
+        <table className="advanced-table">
+          <thead>
             <tr>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Van</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Receipt</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+              <th>Date</th>
+              <th>Category</th>
+              <th>Description</th>
+              <th>Amount (QAR)</th>
+              <th>Van</th>
+              <th>Receipt</th>
+              <th>Actions</th>
             </tr>
           </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
+          <tbody>
             {filteredExpenses.map((expense, idx) => (
-              <tr key={idx} className="hover:bg-gray-50">
-                <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">{expense.date}</td>
-                <td className="px-4 py-4 whitespace-nowrap">
-                  <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-red-100 text-red-800">
+              <tr key={idx}>
+                <td>{expense.date}</td>
+                <td>
+                  <span className="status-badge danger">
                     {expense.category}
                   </span>
                 </td>
-                <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">{expense.description}</td>
-                <td className="px-4 py-4 whitespace-nowrap text-sm font-medium text-red-600">QAR {parseFloat(expense.amount).toFixed(2)}</td>
-                <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">{expense.van || 'N/A'}</td>
-                <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">{expense.receipt || 'N/A'}</td>
-                <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">
+                <td>{expense.description}</td>
+                <td className="font-medium text-red-600">QAR {parseFloat(expense.amount).toFixed(2)}</td>
+                <td>{expense.van || 'N/A'}</td>
+                <td>{expense.receipt || 'N/A'}</td>
+                <td>
                   <div className="flex space-x-2">
                     <button className="text-blue-600 hover:text-blue-900">
                       <Eye className="w-4 h-4" />
@@ -164,26 +164,26 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
     
     return (
       <div className="overflow-x-auto">
-        <table className="min-w-full table-auto">
-          <thead className="bg-gray-50">
+        <table className="advanced-table">
+          <thead>
             <tr>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Phone</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">City</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Credit Limit</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+              <th>Name</th>
+              <th>Phone</th>
+              <th>Email</th>
+              <th>City</th>
+              <th>Credit Limit (QAR)</th>
+              <th>Actions</th>
             </tr>
           </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
+          <tbody>
             {filteredCustomers.map((customer, idx) => (
-              <tr key={idx} className="hover:bg-gray-50">
-                <td className="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{customer.name}</td>
-                <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">{customer.phone}</td>
-                <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">{customer.email || 'N/A'}</td>
-                <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">{customer.city || 'N/A'}</td>
-                <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">QAR {customer.creditLimit || '0.00'}</td>
-                <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">
+              <tr key={idx}>
+                <td className="font-medium">{customer.name}</td>
+                <td>{customer.phone}</td>
+                <td>{customer.email || 'N/A'}</td>
+                <td>{customer.city || 'N/A'}</td>
+                <td>QAR {customer.creditLimit || '0.00'}</td>
+                <td>
                   <div className="flex space-x-2">
                     <button className="text-blue-600 hover:text-blue-900">
                       <Eye className="w-4 h-4" />
@@ -209,24 +209,24 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
     
     return (
       <div className="overflow-x-auto">
-        <table className="min-w-full table-auto">
-          <thead className="bg-gray-50">
+        <table className="advanced-table">
+          <thead>
             <tr>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Product</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quantity</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Van</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Location</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+              <th>Date</th>
+              <th>Type</th>
+              <th>Product</th>
+              <th>Quantity</th>
+              <th>Van</th>
+              <th>Location</th>
+              <th>Actions</th>
             </tr>
           </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
+          <tbody>
             {filteredStock.map((movement, idx) => (
-              <tr key={idx} className="hover:bg-gray-50">
-                <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">{movement.date}</td>
-                <td className="px-4 py-4 whitespace-nowrap">
-                  <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
+              <tr key={idx}>
+                <td>{movement.date}</td>
+                <td>
+                  <span className={`status-badge ${
                     movement.type === 'load' ? 'bg-green-100 text-green-800' :
                     movement.type === 'unload' ? 'bg-blue-100 text-blue-800' :
                     movement.type === 'damage' ? 'bg-red-100 text-red-800' :
@@ -235,11 +235,11 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
                     {movement.type}
                   </span>
                 </td>
-                <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">{movement.product}</td>
-                <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">{movement.quantity}</td>
-                <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">{movement.van || 'N/A'}</td>
-                <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900">{movement.location || 'N/A'}</td>
-                <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">
+                <td>{movement.product}</td>
+                <td>{movement.quantity}</td>
+                <td>{movement.van || 'N/A'}</td>
+                <td>{movement.location || 'N/A'}</td>
+                <td>
                   <div className="flex space-x-2">
                     <button className="text-blue-600 hover:text-blue-900">
                       <Eye className="w-4 h-4" />
@@ -268,12 +268,14 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-900 via-blue-600 to-blue-400 p-6">
-      <div className="bg-gradient-to-br from-white via-blue-50 to-blue-100 rounded-xl shadow-2xl border-2 border-blue-300 max-w-7xl mx-auto backdrop-blur-sm">
+    <div className="min-h-screen p-6">
+      <div className="advanced-card max-w-7xl mx-auto fade-in">
         {/* Header */}
-        <div className="p-6 border-b border-blue-200">
+        <div className="p-6 border-b border-gray-200">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-            <h2 className="text-xl font-semibold text-gray-900">Data Management</h2>
+            <h2 className="text-xl font-semibold text-transparent bg-clip-text bg-gradient-primary">
+              Data Management
+            </h2>
             
             <div className="flex flex-col md:flex-row gap-4">
               {/* Search */}
@@ -284,7 +286,7 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
                   placeholder="Search..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="advanced-input pl-10"
                 />
               </div>
               
@@ -294,7 +296,7 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
                 <select
                   value={filter}
                   onChange={(e) => setFilter(e.target.value)}
-                  className="border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="advanced-input"
                 >
                   <option value="all">All Time</option>
                   <option value="today">Today</option>
@@ -306,7 +308,7 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
               {/* Export */}
               <button
                 onClick={() => onExport(activeTab)}
-                className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-4 py-2 rounded-lg hover:from-blue-700 hover:to-blue-800 transition-colors shadow-lg"
+                className="btn-gradient flex items-center gap-2"
               >
                 <Download className="w-4 h-4" />
                 Export
@@ -316,7 +318,7 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
         </div>
 
         {/* Tabs */}
-        <div className="border-b border-blue-200">
+        <div className="border-b border-gray-200">
           <nav className="flex space-x-8 px-6">
             {tabs.map((tab) => (
               <button
@@ -324,12 +326,14 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
                 onClick={() => setActiveTab(tab.id)}
                 className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors ${
                   activeTab === tab.id
-                    ? 'border-blue-600 text-blue-700'
+                    ? 'border-blue-600 text-transparent bg-clip-text bg-gradient-primary'
                     : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                 }`}
               >
                 {tab.label}
-                <span className="ml-2 bg-gray-100 text-gray-600 py-0.5 px-2 rounded-full text-xs">
+                <span className={`ml-2 py-0.5 px-2 rounded-full text-xs status-badge ${
+                  activeTab === tab.id ? 'info' : ''
+                }`}>
                   {tab.count}
                 </span>
               </button>

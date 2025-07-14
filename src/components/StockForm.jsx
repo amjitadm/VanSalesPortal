@@ -47,10 +47,11 @@ function StockForm({ onSubmit, user }) {
   ];
 
   return (
-    <center><div className="bg-gradient-to-br from-purple-50 via-violet-50 to-indigo-50 p-8 rounded-3xl shadow-2xl border-4 border-gradient-to-r from-purple-400 to-indigo-400">
-      <h2 className="text-3xl font-bold mb-8 flex items-center gap-3 bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
-        <div className="text-4xl animate-bounce">📦</div>
-        🚚 Stock Movement 📋
+    <div className="advanced-card p-8 fade-in">
+      <h2 className="text-3xl font-bold mb-8 text-center text-transparent bg-clip-text bg-gradient-warning">
+        <span className="text-4xl pulse-animation mr-3">📦</span>
+        Stock Movement
+        <span className="text-4xl pulse-animation ml-3">📋</span>
       </h2>
       
       <form onSubmit={handleSubmit} className="space-y-4">
@@ -62,7 +63,7 @@ function StockForm({ onSubmit, user }) {
               value={form.date} 
               onChange={handleChange} 
               type="date" 
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="advanced-input"
               required
             />
           </div>
@@ -73,7 +74,7 @@ function StockForm({ onSubmit, user }) {
               name="type" 
               value={form.type} 
               onChange={handleChange}
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="advanced-input"
               required
             >
               {movementTypes.map(type => (
@@ -89,7 +90,7 @@ function StockForm({ onSubmit, user }) {
               value={form.van} 
               onChange={handleChange} 
               placeholder="Van #"
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="advanced-input"
             />
           </div>
         </div>
@@ -102,7 +103,7 @@ function StockForm({ onSubmit, user }) {
               value={form.product} 
               onChange={handleChange} 
               placeholder="Product name"
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="advanced-input"
               required
             />
           </div>
@@ -115,7 +116,7 @@ function StockForm({ onSubmit, user }) {
               onChange={handleChange} 
               placeholder="0" 
               type="number"
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="advanced-input"
               required
             />
           </div>
@@ -129,7 +130,7 @@ function StockForm({ onSubmit, user }) {
               value={form.location} 
               onChange={handleChange} 
               placeholder="Warehouse/Location"
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="advanced-input"
             />
           </div>
           
@@ -140,7 +141,7 @@ function StockForm({ onSubmit, user }) {
               value={form.reason} 
               onChange={handleChange} 
               placeholder="Reason for movement"
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="advanced-input"
             />
           </div>
         </div>
@@ -153,19 +154,16 @@ function StockForm({ onSubmit, user }) {
             onChange={handleChange} 
             placeholder="Additional notes..."
             rows="3"
-            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            className="advanced-input"
           />
         </div>
 
-        <button 
-          type="submit" 
-          className="w-full bg-purple-600 text-white py-3 px-6 rounded-lg hover:bg-purple-700 transition-colors flex items-center justify-center gap-2 font-medium"
-        >
+        <button type="submit" className="w-full btn-warning py-3 flex items-center justify-center gap-2">
           <Save className="w-5 h-5" />
           Record Movement
         </button>
       </form>
-    </div></center>
+    </div>
   );
 }
 

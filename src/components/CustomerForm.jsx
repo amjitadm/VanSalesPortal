@@ -38,10 +38,11 @@ function CustomerForm({ onSubmit }) {
   };
 
   return (
-    <center><div className="bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 p-8 rounded-3xl shadow-2xl border-4 border-gradient-to-r from-green-400 to-emerald-400">
-      <h2 className="text-3xl font-bold mb-8 flex items-center gap-3 bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
-        <div className="text-4xl animate-bounce">👥</div>
-        🤝 Add New Customer 🌟
+    <div className="advanced-card p-8 fade-in">
+      <h2 className="text-3xl font-bold mb-8 text-center text-transparent bg-clip-text bg-gradient-success">
+        <span className="text-4xl pulse-animation mr-3">👥</span>
+        Add New Customer
+        <span className="text-4xl pulse-animation ml-3">🌟</span>
       </h2>
       
       <form onSubmit={handleSubmit} className="space-y-4">
@@ -53,7 +54,7 @@ function CustomerForm({ onSubmit }) {
               value={form.name} 
               onChange={handleChange} 
               placeholder="Full name"
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              className="advanced-input"
               required
             />
           </div>
@@ -65,7 +66,7 @@ function CustomerForm({ onSubmit }) {
               value={form.phone} 
               onChange={handleChange} 
               placeholder="Phone number"
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              className="advanced-input"
               required
             />
           </div>
@@ -80,7 +81,7 @@ function CustomerForm({ onSubmit }) {
               onChange={handleChange} 
               placeholder="Email address"
               type="email"
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              className="advanced-input"
             />
           </div>
           
@@ -91,7 +92,7 @@ function CustomerForm({ onSubmit }) {
               value={form.city} 
               onChange={handleChange} 
               placeholder="City"
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              className="advanced-input"
             />
           </div>
         </div>
@@ -103,13 +104,13 @@ function CustomerForm({ onSubmit }) {
             value={form.address} 
             onChange={handleChange} 
             placeholder="Full address"
-            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+            className="advanced-input"
           />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Credit Limit</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Credit Limit (QAR)</label>
             <input 
               name="creditLimit" 
               value={form.creditLimit} 
@@ -117,7 +118,7 @@ function CustomerForm({ onSubmit }) {
               placeholder="0.00"
               type="number"
               step="0.01"
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              className="advanced-input"
             />
           </div>
           
@@ -128,20 +129,17 @@ function CustomerForm({ onSubmit }) {
               value={form.notes} 
               onChange={handleChange} 
               placeholder="Customer notes"
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              className="advanced-input"
             />
           </div>
         </div>
 
-        <button 
-          type="submit" 
-          className="w-full bg-green-600 text-white py-3 px-6 rounded-lg hover:bg-green-700 transition-colors flex items-center justify-center gap-2 font-medium"
-        >
+        <button type="submit" className="w-full btn-success py-3 flex items-center justify-center gap-2">
           <Save className="w-5 h-5" />
           Add Customer
         </button>
       </form>
-    </div></center>
+    </div>
   );
 }
 

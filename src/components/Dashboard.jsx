@@ -41,99 +41,103 @@ function Dashboard({ entries, expenses, customers, stockMovements }) {
   const routeGrowth = 5.7;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 p-6"><center>
+    <div className="min-h-screen p-6">
       <div className="max-w-7xl mx-auto space-y-8">
         
         {/* Header Section */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-blue-1500 mb-2">Al Majid Food Service Sales Dashboard</h1>
-          <p className="text-lg text-blue-900">Real-time insights for your van sales operations</p>
+        <div className="text-center mb-12 fade-in">
+          <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-primary mb-2">
+            Al Majid Food Service Sales Dashboard
+          </h1>
+          <p className="text-lg text-gray-600">Real-time insights for your van sales operations</p>
         </div>
 
         {/* Key Metrics Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12 slide-in-up">
           
           {/* Today's Sales */}
-          <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+          <div className="advanced-card metric-card p-6" style={{background: 'var(--gradient-success)'}}>
             <div className="flex items-center justify-between mb-4">
-              <div className="p-3 bg-emerald-100 rounded-xl">
-                <DollarSign className="w-6 h-6 text-emerald-600" />
+              <div className="p-3 bg-white bg-opacity-20 rounded-xl">
+                <DollarSign className="w-6 h-6 text-white" />
               </div>
-              <div className="flex items-center text-emerald-600 text-sm font-medium">
+              <div className="flex items-center text-white text-sm font-medium">
                 <ArrowUp className="w-4 h-4 mr-1" />
                 {salesGrowth}%
               </div>
             </div>
             <div>
-              <p className="text-sm font-medium text-gray-600 mb-1">Today's Sales</p>
-              <p className="text-3xl font-bold text-gray-900">QAR {todaysSales.toLocaleString()}</p>
+              <p className="text-sm font-medium text-white opacity-90 mb-1">Today's Sales</p>
+              <p className="text-3xl font-bold text-white">QAR {todaysSales.toLocaleString()}</p>
             </div>
           </div>
 
           {/* Today's Expenses */}
-          <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+          <div className="advanced-card metric-card p-6" style={{background: 'var(--gradient-danger)'}}>
             <div className="flex items-center justify-between mb-4">
-              <div className="p-3 bg-red-100 rounded-xl">
-                <TrendingUp className="w-6 h-6 text-red-600" />
+              <div className="p-3 bg-white bg-opacity-20 rounded-xl">
+                <TrendingUp className="w-6 h-6 text-white" />
               </div>
-              <div className="flex items-center text-red-600 text-sm font-medium">
+              <div className="flex items-center text-white text-sm font-medium">
                 <ArrowDown className="w-4 h-4 mr-1" />
                 {Math.abs(expenseGrowth)}%
               </div>
             </div>
             <div>
-              <p className="text-sm font-medium text-gray-600 mb-1">Today's Expenses</p>
-              <p className="text-3xl font-bold text-gray-900">QAR {todaysExpenses.toLocaleString()}</p>
+              <p className="text-sm font-medium text-white opacity-90 mb-1">Today's Expenses</p>
+              <p className="text-3xl font-bold text-white">QAR {todaysExpenses.toLocaleString()}</p>
             </div>
           </div>
 
           {/* Total Customers */}
-          <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+          <div className="advanced-card metric-card p-6" style={{background: 'var(--gradient-info)'}}>
             <div className="flex items-center justify-between mb-4">
-              <div className="p-3 bg-blue-100 rounded-xl">
-                <Users className="w-6 h-6 text-blue-600" />
+              <div className="p-3 bg-white bg-opacity-20 rounded-xl">
+                <Users className="w-6 h-6 text-white" />
               </div>
-              <div className="flex items-center text-blue-600 text-sm font-medium">
+              <div className="flex items-center text-white text-sm font-medium">
                 <ArrowUp className="w-4 h-4 mr-1" />
                 {customerGrowth}%
               </div>
             </div>
             <div>
-              <p className="text-sm font-medium text-gray-600 mb-1">Total Customers</p>
-              <p className="text-3xl font-bold text-gray-900">{totalCustomers.toLocaleString()}</p>
+              <p className="text-sm font-medium text-white opacity-90 mb-1">Total Customers</p>
+              <p className="text-3xl font-bold text-white">{totalCustomers.toLocaleString()}</p>
             </div>
           </div>
 
           {/* Active Routes */}
-          <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+          <div className="advanced-card metric-card p-6" style={{background: 'var(--gradient-warning)'}}>
             <div className="flex items-center justify-between mb-4">
-              <div className="p-3 bg-purple-100 rounded-xl">
-                <MapPin className="w-6 h-6 text-purple-600" />
+              <div className="p-3 bg-white bg-opacity-20 rounded-xl">
+                <MapPin className="w-6 h-6 text-white" />
               </div>
-              <div className="flex items-center text-purple-600 text-sm font-medium">
+              <div className="flex items-center text-white text-sm font-medium">
                 <ArrowUp className="w-4 h-4 mr-1" />
                 {routeGrowth}%
               </div>
             </div>
             <div>
-              <p className="text-sm font-medium text-gray-600 mb-1">Active Routes</p>
-              <p className="text-3xl font-bold text-gray-900">{activeRoutes}</p>
+              <p className="text-sm font-medium text-white opacity-90 mb-1">Active Routes</p>
+              <p className="text-3xl font-bold text-white">{activeRoutes}</p>
             </div>
           </div>
         </div>
 
         {/* Charts and Analytics Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 slide-in-left">
           
           {/* Weekly Sales Chart */}
-          <div className="lg:col-span-2 bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
+          <div className="lg:col-span-2 advanced-card p-8">
             <div className="flex items-center justify-between mb-8">
               <div>
-                <h3 className="text-xl font-bold text-gray-900">Weekly Sales Overview</h3>
+                <h3 className="text-xl font-bold text-transparent bg-clip-text bg-gradient-primary">
+                  Weekly Sales Overview
+                </h3>
                 <p className="text-gray-600 text-sm">Sales performance over the last 7 days</p>
               </div>
-              <div className="p-2 bg-blue-100 rounded-lg">
-                <TrendingUp className="w-5 h-5 text-blue-600" />
+              <div className="p-2 bg-gradient-primary rounded-lg">
+                <TrendingUp className="w-5 h-5 text-white" />
               </div>
             </div>
             
@@ -141,13 +145,14 @@ function Dashboard({ entries, expenses, customers, stockMovements }) {
               {weeklyData.map((day, index) => (
                 <div key={index} className="flex flex-col items-center flex-1 group">
                   <div 
-                    className="bg-gradient-to-t from-blue-500 to-blue-400 rounded-t-lg w-full transition-all duration-300 group-hover:from-blue-600 group-hover:to-blue-500 group-hover:scale-105 shadow-lg relative"
+                    className="chart-bar w-full relative"
                     style={{ 
                       height: `${(day.sales / maxSales) * 200 + 20}px`,
                       minHeight: '20px'
                     }}
                   >
-                    <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                    <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 advanced-card text-xs px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                      QAR {day.sales.toFixed(0)}
                     </div>
                   </div>
                   <span className="text-sm font-medium text-gray-700 mt-3">{day.day}</span>
@@ -161,12 +166,12 @@ function Dashboard({ entries, expenses, customers, stockMovements }) {
           <div className="space-y-6">
             
             {/* Net Profit Card */}
-            <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+            <div className="advanced-card p-6">
               <div className="flex items-center justify-between mb-4">
-                <div className="p-3 bg-gradient-to-br from-emerald-100 to-teal-100 rounded-xl">
-                  <Package className="w-6 h-6 text-emerald-600" />
+                <div className="p-3 bg-gradient-success rounded-xl">
+                  <Package className="w-6 h-6 text-white" />
                 </div>
-                <div className={`flex items-center text-sm font-medium ${netProfit >= 0 ? 'text-emerald-600' : 'text-red-600'}`}>
+                <div className={`status-badge ${netProfit >= 0 ? 'success' : 'danger'}`}>
                   {netProfit >= 0 ? <ArrowUp className="w-4 h-4 mr-1" /> : <ArrowDown className="w-4 h-4 mr-1" />}
                   {Math.abs((netProfit / (todaysSales || 1)) * 100).toFixed(1)}%
                 </div>
@@ -180,12 +185,12 @@ function Dashboard({ entries, expenses, customers, stockMovements }) {
             </div>
 
             {/* Total Entries Card */}
-            <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+            <div className="advanced-card p-6">
               <div className="flex items-center justify-between mb-4">
-                <div className="p-3 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-xl">
-                  <Calendar className="w-6 h-6 text-blue-600" />
+                <div className="p-3 bg-gradient-primary rounded-xl">
+                  <Calendar className="w-6 h-6 text-white" />
                 </div>
-                <span className="text-blue-600 text-sm font-medium">+{entries.length}</span>
+                <span className="status-badge info">+{entries.length}</span>
               </div>
               <div>
                 <p className="text-sm font-medium text-gray-600 mb-1">Total Entries</p>
@@ -194,12 +199,12 @@ function Dashboard({ entries, expenses, customers, stockMovements }) {
             </div>
 
             {/* Stock Movements Card */}
-            <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+            <div className="advanced-card p-6">
               <div className="flex items-center justify-between mb-4">
-                <div className="p-3 bg-gradient-to-br from-purple-100 to-pink-100 rounded-xl">
-                  <Package className="w-6 h-6 text-purple-600" />
+                <div className="p-3 bg-gradient-warning rounded-xl">
+                  <Package className="w-6 h-6 text-white" />
                 </div>
-                <span className="text-purple-600 text-sm font-medium">+{stockMovements.length}</span>
+                <span className="status-badge warning">+{stockMovements.length}</span>
               </div>
               <div>
                 <p className="text-sm font-medium text-gray-600 mb-1">Stock Movements</p>
@@ -210,7 +215,7 @@ function Dashboard({ entries, expenses, customers, stockMovements }) {
         </div>
 
        
-      </div></center>
+      </div>
     </div>
   );
 }
