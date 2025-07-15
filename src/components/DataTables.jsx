@@ -56,8 +56,8 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
     
     return (
       <div className="overflow-x-auto">
-        <table className="advanced-table">
-          <thead>
+        <table className="md-table">
+          <thead className="md-table-head">
             <tr>
               <th>Date</th>
               <th>Product</th>
@@ -69,7 +69,7 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
               <th>Actions</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="md-table-body">
             {filteredSales.map((entry, idx) => (
               <tr key={idx}>
                 <td>{entry.date}</td>
@@ -79,20 +79,20 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
                 <td>QAR {entry.price}</td>
                 <td className="font-medium">QAR {parseFloat(entry.total).toFixed(2)}</td>
                 <td>
-                  <span className={`status-badge ${
-                    entry.paymentMethod === 'cash' ? 'bg-green-100 text-green-800' :
-                    entry.paymentMethod === 'credit' ? 'bg-yellow-100 text-yellow-800' :
-                    'bg-blue-100 text-blue-800'
+                  <span className={`md-chip ${
+                    entry.paymentMethod === 'cash' ? 'md-chip-success' :
+                    entry.paymentMethod === 'credit' ? 'md-chip-warning' :
+                    'md-chip-primary'
                   }`}>
                     {entry.paymentMethod || 'cash'}
                   </span>
                 </td>
                 <td>
                   <div className="flex space-x-2">
-                    <button className="text-blue-600 hover:text-blue-900">
+                    <button className="md-text-primary">
                       <Eye className="w-4 h-4" />
                     </button>
-                    <button className="text-green-600 hover:text-green-900">
+                    <button className="md-text-success">
                       <Edit className="w-4 h-4" />
                     </button>
                   </div>
@@ -102,7 +102,7 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
           </tbody>
         </table>
         {filteredSales.length === 0 && (
-          <div className="text-center py-8 text-gray-500">No sales entries found</div>
+          <div className="md-text-center py-8" style={{color: 'var(--md-grey-500)'}}>No sales entries found</div>
         )}
       </div>
     );
@@ -113,8 +113,8 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
     
     return (
       <div className="overflow-x-auto">
-        <table className="advanced-table">
-          <thead>
+        <table className="md-table">
+          <thead className="md-table-head">
             <tr>
               <th>Date</th>
               <th>Category</th>
@@ -125,12 +125,12 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
               <th>Actions</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="md-table-body">
             {filteredExpenses.map((expense, idx) => (
               <tr key={idx}>
                 <td>{expense.date}</td>
                 <td>
-                  <span className="status-badge danger">
+                  <span className="md-chip md-chip-error">
                     {expense.category}
                   </span>
                 </td>
@@ -140,10 +140,10 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
                 <td>{expense.receipt || 'N/A'}</td>
                 <td>
                   <div className="flex space-x-2">
-                    <button className="text-blue-600 hover:text-blue-900">
+                    <button className="md-text-primary">
                       <Eye className="w-4 h-4" />
                     </button>
-                    <button className="text-green-600 hover:text-green-900">
+                    <button className="md-text-success">
                       <Edit className="w-4 h-4" />
                     </button>
                   </div>
@@ -153,7 +153,7 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
           </tbody>
         </table>
         {filteredExpenses.length === 0 && (
-          <div className="text-center py-8 text-gray-500">No expenses found</div>
+          <div className="md-text-center py-8" style={{color: 'var(--md-grey-500)'}}>No expenses found</div>
         )}
       </div>
     );
@@ -164,8 +164,8 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
     
     return (
       <div className="overflow-x-auto">
-        <table className="advanced-table">
-          <thead>
+        <table className="md-table">
+          <thead className="md-table-head">
             <tr>
               <th>Name</th>
               <th>Phone</th>
@@ -175,7 +175,7 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
               <th>Actions</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="md-table-body">
             {filteredCustomers.map((customer, idx) => (
               <tr key={idx}>
                 <td className="font-medium">{customer.name}</td>
@@ -185,10 +185,10 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
                 <td>QAR {customer.creditLimit || '0.00'}</td>
                 <td>
                   <div className="flex space-x-2">
-                    <button className="text-blue-600 hover:text-blue-900">
+                    <button className="md-text-primary">
                       <Eye className="w-4 h-4" />
                     </button>
-                    <button className="text-green-600 hover:text-green-900">
+                    <button className="md-text-success">
                       <Edit className="w-4 h-4" />
                     </button>
                   </div>
@@ -198,7 +198,7 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
           </tbody>
         </table>
         {filteredCustomers.length === 0 && (
-          <div className="text-center py-8 text-gray-500">No customers found</div>
+          <div className="md-text-center py-8" style={{color: 'var(--md-grey-500)'}}>No customers found</div>
         )}
       </div>
     );
@@ -209,8 +209,8 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
     
     return (
       <div className="overflow-x-auto">
-        <table className="advanced-table">
-          <thead>
+        <table className="md-table">
+          <thead className="md-table-head">
             <tr>
               <th>Date</th>
               <th>Type</th>
@@ -221,16 +221,16 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
               <th>Actions</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="md-table-body">
             {filteredStock.map((movement, idx) => (
               <tr key={idx}>
                 <td>{movement.date}</td>
                 <td>
-                  <span className={`status-badge ${
-                    movement.type === 'load' ? 'bg-green-100 text-green-800' :
-                    movement.type === 'unload' ? 'bg-blue-100 text-blue-800' :
-                    movement.type === 'damage' ? 'bg-red-100 text-red-800' :
-                    'bg-yellow-100 text-yellow-800'
+                  <span className={`md-chip ${
+                    movement.type === 'load' ? 'md-chip-success' :
+                    movement.type === 'unload' ? 'md-chip-primary' :
+                    movement.type === 'damage' ? 'md-chip-error' :
+                    'md-chip-warning'
                   }`}>
                     {movement.type}
                   </span>
@@ -241,10 +241,10 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
                 <td>{movement.location || 'N/A'}</td>
                 <td>
                   <div className="flex space-x-2">
-                    <button className="text-blue-600 hover:text-blue-900">
+                    <button className="md-text-primary">
                       <Eye className="w-4 h-4" />
                     </button>
-                    <button className="text-green-600 hover:text-green-900">
+                    <button className="md-text-success">
                       <Edit className="w-4 h-4" />
                     </button>
                   </div>
@@ -254,7 +254,7 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
           </tbody>
         </table>
         {filteredStock.length === 0 && (
-          <div className="text-center py-8 text-gray-500">No stock movements found</div>
+          <div className="md-text-center py-8" style={{color: 'var(--md-grey-500)'}}>No stock movements found</div>
         )}
       </div>
     );
@@ -269,34 +269,34 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
 
   return (
     <div className="min-h-screen">
-      <div className="advanced-card max-w-6xl mx-auto fade-in">
+      <div className="md-card md-elevation-6 max-w-6xl mx-auto md-fade-in">
         {/* Header */}
-        <div className="p-6 border-b border-gray-200">
+        <div className="p-6 border-b" style={{borderColor: 'var(--md-grey-200)'}}>
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-            <h2 className="text-xl font-semibold text-transparent bg-clip-text bg-gradient-primary">
+            <h2 className="md-h6 md-text-primary">
               Data Management
             </h2>
             
             <div className="flex flex-col md:flex-row gap-4">
               {/* Search */}
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4" style={{color: 'var(--md-grey-400)'}} />
                 <input
                   type="text"
                   placeholder="Search..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="advanced-input pl-10"
+                  className="md-input pl-10"
                 />
               </div>
               
               {/* Filter */}
               <div className="flex items-center gap-2">
-                <Filter className="w-4 h-4 text-gray-400" />
+                <Filter className="w-4 h-4" style={{color: 'var(--md-grey-400)'}} />
                 <select
                   value={filter}
                   onChange={(e) => setFilter(e.target.value)}
-                  className="advanced-input"
+                  className="md-input"
                 >
                   <option value="all">All Time</option>
                   <option value="today">Today</option>
@@ -308,7 +308,7 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
               {/* Export */}
               <button
                 onClick={() => onExport(activeTab)}
-                className="btn-gradient flex items-center gap-2"
+                className="md-button md-button-contained flex items-center gap-2"
               >
                 <Download className="w-4 h-4" />
                 Export
@@ -318,7 +318,7 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
         </div>
 
         {/* Tabs */}
-        <div className="border-b border-gray-200">
+        <div className="border-b" style={{borderColor: 'var(--md-grey-200)'}}>
           <nav className="flex space-x-8 px-6">
             {tabs.map((tab) => (
               <button
@@ -326,13 +326,17 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
                 onClick={() => setActiveTab(tab.id)}
                 className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors ${
                   activeTab === tab.id
-                    ? 'border-blue-600 text-transparent bg-clip-text bg-gradient-primary'
-                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                    ? 'md-text-primary'
+                    : 'border-transparent hover:border-gray-300'
                 }`}
+                style={{
+                  borderBottomColor: activeTab === tab.id ? 'var(--md-primary-500)' : 'transparent',
+                  color: activeTab === tab.id ? 'var(--md-primary-500)' : 'var(--md-grey-500)'
+                }}
               >
                 {tab.label}
-                <span className={`ml-2 py-0.5 px-2 rounded-full text-xs status-badge ${
-                  activeTab === tab.id ? 'info' : ''
+                <span className={`ml-2 py-0.5 px-2 rounded-full text-xs md-chip ${
+                  activeTab === tab.id ? 'md-chip-primary' : ''
                 }`}>
                   {tab.count}
                 </span>
