@@ -186,7 +186,7 @@ function VanSalesPortal() {
 
   if (!user) {
     return (
-      <div className="min-h-screen flex items-center justify-center p-4">
+      <div className="min-h-screen flex items-center justify-center p-4"><center>
         <div className="advanced-card glass-card p-8 w-full max-w-md fade-in">
           <div className="text-center mb-8">
             <div className="w-20 h-20 mx-auto mb-4 bg-gradient-primary rounded-full flex items-center justify-center text-3xl pulse-animation">
@@ -195,20 +195,20 @@ function VanSalesPortal() {
             <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mb-2">
               Van Sales Portal
             </h1>
-            <p className="text-gray-600">Professional Sales Management System</p>
+            <p className="text-gray-600">Al Majid Jawad Van Sales Management System</p>
           </div>
           
           <button onClick={handleLogin} className="w-full btn-gradient py-4 text-lg">
             <span className="mr-2">🔐</span>
             Login to Dashboard
           </button>
-        </div>
+        </div></center>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col"><center>
       {/* Company Logo Header */}
       <header className="w-full bg-white shadow-lg border-b-4 border-gradient-primary">
         <div className="max-w-7xl mx-auto px-6 py-4">
@@ -227,7 +227,7 @@ function VanSalesPortal() {
             </div>
             <div className="text-center">
               <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-primary">
-                Al Majid Food Service
+                Al Majid Jawad Food Service
               </h1>
               <p className="text-gray-600 text-sm">Professional Van Sales Management System</p>
             </div>
@@ -393,7 +393,7 @@ function VanSalesPortal() {
           onClick={() => setSidebarOpen(false)}
         />
       )}
-    </div>
+    </center></div>
   );
 }
 
