@@ -41,7 +41,7 @@ function Dashboard({ entries, expenses, customers, stockMovements }) {
   const routeGrowth = 5.7;
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen"><center>
       <div className="max-w-6xl mx-auto space-y-8 px-4">
         
         {/* Header Section */}
@@ -215,7 +215,7 @@ function Dashboard({ entries, expenses, customers, stockMovements }) {
         </div>
 
        
-      </div>
+      </div></center>
     </div>
   );
 }
