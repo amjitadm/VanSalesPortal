@@ -363,7 +363,6 @@ function VanSalesPortal() {
           onClick={() => setSidebarOpen(false)}
         />
       )}
-    </div></center>
     </div>
   );
 }
