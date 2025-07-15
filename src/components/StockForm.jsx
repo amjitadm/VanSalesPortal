@@ -49,7 +49,7 @@ function StockForm({ onSubmit, user }) {
   return (
     <div className="max-w-4xl mx-auto"><center>
       <div className="advanced-card p-8 fade-in">
-      <h2 className="text-3xl font-bold mb-8 text-center text-transparent bg-clip-text bg-gradient-warning">
+      <h2 className="text-3xl font-bold mb-8 text-center text-white bg-clip-text bg-gradient-warning">
         <span className="text-4xl pulse-animation mr-3">📦</span>
         Stock Movement
         <span className="text-4xl pulse-animation ml-3">📋</span>
@@ -58,7 +58,7 @@ function StockForm({ onSubmit, user }) {
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Date</label>
+            <label className="block text-sm font-medium text-white-700 mb-1">Date</label>
             <input 
               name="date" 
               value={form.date} 
@@ -70,7 +70,7 @@ function StockForm({ onSubmit, user }) {
           </div>
           
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Movement Type</label>
+            <label className="block text-sm font-medium text-white-700 mb-1">Movement Type</label>
             <select 
               name="type" 
               value={form.type} 
@@ -85,7 +85,7 @@ function StockForm({ onSubmit, user }) {
           </div>
           
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Van Number</label>
+            <label className="block text-sm font-medium text-white-700 mb-1">Van Number</label>
             <input 
               name="van" 
               value={form.van} 
@@ -98,7 +98,7 @@ function StockForm({ onSubmit, user }) {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Product</label>
+            <label className="block text-sm font-medium text-white-700 mb-1">Product</label>
             <input 
               name="product" 
               value={form.product} 
@@ -110,7 +110,7 @@ function StockForm({ onSubmit, user }) {
           </div>
           
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Quantity</label>
+            <label className="block text-sm font-medium text-white-700 mb-1">Quantity</label>
             <input 
               name="quantity" 
               value={form.quantity} 
@@ -125,7 +125,7 @@ function StockForm({ onSubmit, user }) {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Location</label>
+            <label className="block text-sm font-medium text-white-700 mb-1">Location</label>
             <input 
               name="location" 
               value={form.location} 
@@ -136,7 +136,7 @@ function StockForm({ onSubmit, user }) {
           </div>
           
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Reason</label>
+            <label className="block text-sm font-medium text-white-700 mb-1">Reason</label>
             <input 
               name="reason" 
               value={form.reason} 
@@ -148,7 +148,7 @@ function StockForm({ onSubmit, user }) {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Remarks</label>
+          <label className="block text-sm font-medium text-white-700 mb-1">Remarks</label>
           <textarea 
             name="remarks" 
             value={form.remarks} 
