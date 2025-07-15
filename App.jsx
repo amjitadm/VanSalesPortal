@@ -208,9 +208,37 @@ function VanSalesPortal() {
   }
 
   return (
-    <div className="min-h-screen flex">
+    <div className="min-h-screen flex flex-col">
+      {/* Company Logo Header */}
+      <header className="w-full bg-white shadow-lg border-b-4 border-gradient-primary">
+        <div className="max-w-7xl mx-auto px-6 py-4">
+          <div className="flex items-center justify-center">
+            <img 
+              src="/logo.png" 
+              alt="Al Majid Food Service" 
+              className="h-16 w-auto mr-4"
+              onError={(e) => {
+                e.target.style.display = 'none';
+                e.target.nextSibling.style.display = 'flex';
+              }}
+            />
+            <div className="hidden items-center justify-center w-16 h-16 bg-gradient-primary rounded-full mr-4">
+              <span className="text-2xl">🚐</span>
+            </div>
+            <div className="text-center">
+              <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-primary">
+                Al Majid Food Service
+              </h1>
+              <p className="text-gray-600 text-sm">Professional Van Sales Management System</p>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div className="flex-1 flex justify-center">
+        <div className="w-full max-w-7xl flex">
       {/* Sidebar */}
-      <div className={`fixed inset-y-0 left-0 z-50 w-64 advanced-card transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0 slide-in-left`}>
+          <div className={`fixed inset-y-0 left-0 top-20 z-50 w-64 advanced-card transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0 slide-in-left`}>
         <div className="flex items-center justify-between h-16 px-6 border-b border-gray-200 bg-gradient-primary text-white">
           <div className="flex items-center space-x-3">
             <div className="h-8 w-8 bg-white rounded-full flex items-center justify-center text-blue-600 font-bold">
@@ -275,9 +303,9 @@ function VanSalesPortal() {
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 lg:ml-0">
+          <div className="flex-1 lg:ml-0 max-w-full">
         {/* Header */}
-        <header className="advanced-card shadow-sm border-b border-gray-200">
+            <div className="advanced-card shadow-sm border-b border-gray-200">
           <div className="flex items-center justify-between h-16 px-6">
             <div className="flex items-center">
               <button
@@ -303,10 +331,10 @@ function VanSalesPortal() {
               </label>
             </div>
           </div>
-        </header>
+            </div>
 
         {/* Page Content */}
-        <main className="p-6 fade-in">
+            <main className="p-6 fade-in max-w-6xl mx-auto">
           {activeTab === 'dashboard' && (
             <Dashboard 
               entries={entries} 
@@ -354,6 +382,8 @@ function VanSalesPortal() {
             />
           )}
         </main>
+      </div>
+        </div>
       </div>
 
       {/* Sidebar Overlay */}

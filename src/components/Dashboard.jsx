@@ -41,19 +41,19 @@ function Dashboard({ entries, expenses, customers, stockMovements }) {
   const routeGrowth = 5.7;
 
   return (
-    <div className="min-h-screen p-6">
-      <div className="max-w-7xl mx-auto space-y-8">
+    <div className="min-h-screen">
+      <div className="max-w-6xl mx-auto space-y-8 px-4">
         
         {/* Header Section */}
-        <div className="text-center mb-12 fade-in">
+        <div className="text-center mb-8 fade-in">
           <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-primary mb-2">
-            Al Majid Food Service Sales Dashboard
+            Sales Dashboard
           </h1>
           <p className="text-lg text-gray-600">Real-time insights for your van sales operations</p>
         </div>
 
         {/* Key Metrics Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12 slide-in-up">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8 slide-in-up">
           
           {/* Today's Sales */}
           <div className="advanced-card metric-card p-6" style={{background: 'var(--gradient-success)'}}>

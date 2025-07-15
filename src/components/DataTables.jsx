@@ -268,8 +268,8 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
   ];
 
   return (
-    <div className="min-h-screen p-6">
-      <div className="advanced-card max-w-7xl mx-auto fade-in">
+    <div className="min-h-screen">
+      <div className="advanced-card max-w-6xl mx-auto fade-in">
         {/* Header */}
         <div className="p-6 border-b border-gray-200">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
