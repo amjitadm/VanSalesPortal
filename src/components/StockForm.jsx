@@ -47,124 +47,125 @@ function StockForm({ onSubmit, user }) {
   ];
 
   return (
-    <div className="max-w-4xl mx-auto"><center>
-      <div className="advanced-card p-8 fade-in">
-      <h2 className="text-3xl font-bold mb-8 text-center text-white bg-clip-text bg-gradient-warning">
-        <span className="text-4xl pulse-animation mr-3">📦</span>
+    <div className="max-w-4xl mx-auto">
+      <div className="md-card md-elevation-6 p-8 md-fade-in">
+      <h2 className="md-h4 mb-8 md-text-center md-text-warning">
+        <span className="text-4xl mr-3">📦</span>
         Stock Movement
-        <span className="text-4xl pulse-animation ml-3">📋</span>
+        <span className="text-4xl ml-3">📋</span>
       </h2>
       
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div>
-            <label className="block text-sm font-medium text-white-700 mb-1">Date</label>
+          <div className="md-input-group">
             <input 
               name="date" 
               value={form.date} 
               onChange={handleChange} 
               type="date" 
-              className="advanced-input"
+              className="md-input"
+              placeholder=" "
               required
             />
+            <label className="md-input-label">Date</label>
           </div>
           
-          <div>
-            <label className="block text-sm font-medium text-white-700 mb-1">Movement Type</label>
+          <div className="md-input-group">
             <select 
               name="type" 
               value={form.type} 
               onChange={handleChange}
-              className="advanced-input"
+              className="md-input"
               required
             >
               {movementTypes.map(type => (
                 <option key={type.value} value={type.value}>{type.label}</option>
               ))}
             </select>
+            <label className="md-input-label">Movement Type</label>
           </div>
           
-          <div>
-            <label className="block text-sm font-medium text-white-700 mb-1">Van Number</label>
+          <div className="md-input-group">
             <input 
               name="van" 
               value={form.van} 
               onChange={handleChange} 
-              placeholder="Van #"
-              className="advanced-input"
+              placeholder=" "
+              className="md-input"
             />
+            <label className="md-input-label">Van Number</label>
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label className="block text-sm font-medium text-white-700 mb-1">Product</label>
+          <div className="md-input-group">
             <input 
               name="product" 
               value={form.product} 
               onChange={handleChange} 
-              placeholder="Product name"
-              className="advanced-input"
+              placeholder=" "
+              className="md-input"
               required
             />
+            <label className="md-input-label">Product Name</label>
           </div>
           
-          <div>
-            <label className="block text-sm font-medium text-white-700 mb-1">Quantity</label>
+          <div className="md-input-group">
             <input 
               name="quantity" 
               value={form.quantity} 
               onChange={handleChange} 
-              placeholder="0" 
+              placeholder=" "
               type="number"
-              className="advanced-input"
+              className="md-input"
               required
             />
+            <label className="md-input-label">Quantity</label>
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label className="block text-sm font-medium text-white-700 mb-1">Location</label>
+          <div className="md-input-group">
             <input 
               name="location" 
               value={form.location} 
               onChange={handleChange} 
-              placeholder="Warehouse/Location"
-              className="advanced-input"
+              placeholder=" "
+              className="md-input"
             />
+            <label className="md-input-label">Location</label>
           </div>
           
-          <div>
-            <label className="block text-sm font-medium text-white-700 mb-1">Reason</label>
+          <div className="md-input-group">
             <input 
               name="reason" 
               value={form.reason} 
               onChange={handleChange} 
-              placeholder="Reason for movement"
-              className="advanced-input"
+              placeholder=" "
+              className="md-input"
             />
+            <label className="md-input-label">Reason for Movement</label>
           </div>
         </div>
 
-        <div>
-          <label className="block text-sm font-medium text-white-700 mb-1">Remarks</label>
+        <div className="md-input-group">
           <textarea 
             name="remarks" 
             value={form.remarks} 
             onChange={handleChange} 
-            placeholder="Additional notes..."
+            placeholder=" "
             rows="3"
-            className="advanced-input"
+            className="md-input"
           />
+          <label className="md-input-label">Remarks</label>
         </div>
 
-        <button type="submit" className="w-full btn-warning py-3 flex items-center justify-center gap-2">
+        <button type="submit" className="w-full md-button md-button-contained md-button-warning py-3 flex items-center justify-center gap-2">
           <Save className="w-5 h-5" />
           Record Movement
         </button>
       </form>
-    </div></center>
+    </div>
     </div>
   );
 }

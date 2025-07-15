@@ -47,113 +47,114 @@ function ExpenseForm({ onSubmit, user }) {
   ];
 
   return (
-    <div className="max-w-4xl mx-auto"><center>
-      <div className="advanced-card p-8 fade-in">
-      <h2 className="text-3xl font-bold mb-8 text-center text-transparent bg-clip-text bg-gradient-danger">
-        <span className="text-4xl pulse-animation mr-3">💸</span>
+    <div className="max-w-4xl mx-auto">
+      <div className="md-card md-elevation-6 p-8 md-fade-in">
+      <h2 className="md-h4 mb-8 md-text-center md-text-error">
+        <span className="text-4xl mr-3">💸</span>
         Add Expense
-        <span className="text-4xl pulse-animation ml-3">📉</span>
+        <span className="text-4xl ml-3">📉</span>
       </h2>
       
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Date</label>
+          <div className="md-input-group">
             <input 
               name="date" 
               value={form.date} 
               onChange={handleChange} 
               type="date" 
-              className="advanced-input"
+              className="md-input"
+              placeholder=" "
               required
             />
+            <label className="md-input-label">Date</label>
           </div>
           
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Category</label>
+          <div className="md-input-group">
             <select 
               name="category" 
               value={form.category} 
               onChange={handleChange}
-              className="advanced-input"
+              className="md-input"
               required
             >
               {expenseCategories.map(cat => (
                 <option key={cat.value} value={cat.value}>{cat.label}</option>
               ))}
             </select>
+            <label className="md-input-label">Category</label>
           </div>
           
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Amount (QAR)</label>
+          <div className="md-input-group">
             <input 
               name="amount" 
               value={form.amount} 
               onChange={handleChange} 
-              placeholder="0.00" 
+              placeholder=" "
               type="number" 
               step="0.01"
-              className="advanced-input"
+              className="md-input"
               required
             />
+            <label className="md-input-label">Amount (QAR)</label>
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
+          <div className="md-input-group">
             <input 
               name="description" 
               value={form.description} 
               onChange={handleChange} 
-              placeholder="Expense description"
-              className="advanced-input"
+              placeholder=" "
+              className="md-input"
               required
             />
+            <label className="md-input-label">Description</label>
           </div>
           
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Van Number</label>
+          <div className="md-input-group">
             <input 
               name="van" 
               value={form.van} 
               onChange={handleChange} 
-              placeholder="Van #"
-              className="advanced-input"
+              placeholder=" "
+              className="md-input"
             />
+            <label className="md-input-label">Van Number</label>
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Receipt Number</label>
+          <div className="md-input-group">
             <input 
               name="receipt" 
               value={form.receipt} 
               onChange={handleChange} 
-              placeholder="Receipt #"
-              className="advanced-input"
+              placeholder=" "
+              className="md-input"
             />
+            <label className="md-input-label">Receipt Number</label>
           </div>
           
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Remarks</label>
+          <div className="md-input-group">
             <input 
               name="remarks" 
               value={form.remarks} 
               onChange={handleChange} 
-              placeholder="Additional notes"
-              className="advanced-input"
+              placeholder=" "
+              className="md-input"
             />
+            <label className="md-input-label">Remarks</label>
           </div>
         </div>
 
-        <button type="submit" className="w-full btn-danger py-3 flex items-center justify-center gap-2">
+        <button type="submit" className="w-full md-button md-button-contained md-button-error py-3 flex items-center justify-center gap-2">
           <Save className="w-5 h-5" />
           Add Expense
         </button>
       </form>
-    </div></center>
+    </div>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import * as XLSX from 'xlsx';
-import './src/styles/advanced-theme.css';
+import './src/styles/material-theme.css';
 import { 
   LayoutDashboard, 
   Plus, 
@@ -186,49 +186,59 @@ function VanSalesPortal() {
 
   if (!user) {
     return (
-      <div className="min-h-screen flex items-center justify-center p-4">
-        <div className="advanced-card glass-card p-8 w-full max-w-md fade-in">
-          <div className="text-center mb-8">
-            <img src="logo.png" alt="Al Majid Food Service" 
-              className="h-16 w-auto mr-4"
-              onError={(e) => {
-                e.target.style.display = 'none';
-                e.target.nextSibling.style.display = 'flex';
-              }}
-            />
-            <center><h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mb-2">
+      <div className="min-h-screen flex items-center justify-center p-4" style={{backgroundColor: 'var(--md-grey-100)'}}>
+        <div className="md-card md-elevation-8 p-8 w-full max-w-md md-fade-in">
+          <div className="md-text-center mb-8">
+            <div className="flex justify-center mb-4">
+              <img src="logo.png" alt="Al Majid Food Service" 
+                className="h-20 w-auto"
+                onError={(e) => {
+                  e.target.style.display = 'none';
+                  e.target.nextSibling.style.display = 'flex';
+                }}
+              />
+              <div className="hidden items-center justify-center w-20 h-20 rounded-full md-bg-primary text-white text-3xl">
+                🚐
+              </div>
+            </div>
+            <h1 className="md-h4 md-text-primary mb-2">
               Van Sales Portal
-            </h1></center>
-            <center><p className="text-gray-600">Al Majid Jawad Van Sales Management System</p></center>
+            </h1>
+            <p className="md-body2" style={{color: 'var(--md-grey-600)'}}>Al Majid Jawad Van Sales Management System</p>
           </div>
           
-          <center><button onClick={handleLogin} className="w-full btn-gradient py-4 text-lg">
+          <button onClick={handleLogin} className="w-full md-button md-button-contained py-4 text-lg">
             <span className="mr-2">🔐</span>
             Login to Dashboard
-          </button></center>
+          </button>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen flex flex-col"><center>
+    <div className="min-h-screen flex flex-col" style={{backgroundColor: 'var(--md-grey-50)'}}>
       {/* Company Logo Header */}
-      <header className="w-full bg-white shadow-lg border-b-4 border-gradient-primary">
-        <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-center">
-            <img src="logo.png" alt="Al Majid Food Service" 
-              className="h-16 w-auto mr-4"
-              onError={(e) => {
-                e.target.style.display = 'none';
-                e.target.nextSibling.style.display = 'flex';
-              }}
-            />
-            <div className="text-center">
-              <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-primary">
-                Al Majid Jawad Food Service
-              </h1>
-              <p className="text-gray-600 text-sm">Professional Van Sales Management System</p>
+      <header className="md-app-bar">
+        <div className="md-toolbar">
+          <div className="flex-1 flex justify-center items-center">
+            <div className="flex items-center">
+              <img src="logo.png" alt="Al Majid Food Service" 
+                className="h-12 w-auto mr-4"
+                onError={(e) => {
+                  e.target.style.display = 'none';
+                  e.target.nextSibling.style.display = 'flex';
+                }}
+              />
+              <div className="hidden items-center justify-center w-12 h-12 rounded-full bg-white bg-opacity-20 text-white text-2xl mr-4">
+                🚐
+              </div>
+              <div className="md-text-center">
+                <h1 className="md-h5 text-white mb-0">
+                  Al Majid Jawad Food Service
+                </h1>
+                <p className="md-caption text-white opacity-90 mb-0">Professional Van Sales Management System</p>
+              </div>
             </div>
           </div>
         </div>
@@ -236,152 +246,151 @@ function VanSalesPortal() {
 
       <div className="flex-1 flex justify-center">
         <div className="w-full max-w-7xl flex">
-      {/* Sidebar */}
-          <div className={`fixed inset-y-0 left-0 top-20 z-50 w-64 advanced-card transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0 slide-in-left`}>
-        <div className="flex items-center justify-between h-16 px-6 border-b border-gray-200 bg-gradient-primary text-white">
-          <div className="flex items-center space-x-3">
-            <div className="h-8 w-8 bg-white rounded-full flex items-center justify-center text-blue-600 font-bold">
-              🚐
-            </div>
-            <span className="font-semibold text-lg">Sales Dashboard</span>
-          </div>
-          <button
-            onClick={() => setSidebarOpen(false)}
-            className="lg:hidden text-white hover:text-gray-200"
-          >
-            <X className="w-6 h-6" />
-          </button>
-        </div>
-        
-        <nav className="mt-6 px-3">
-          <div className="space-y-1">
-            {menuItems.map((item) => {
-              const Icon = item.icon;
-              return (
-                <button
-                  key={item.id}
-                  onClick={() => {
-                    setActiveTab(item.id);
-                    setSidebarOpen(false);
-                  }}
-                  className={`w-full flex items-center px-3 py-3 text-sm font-medium rounded-lg transition-all duration-300 ${
-                    activeTab === item.id
-                      ? 'bg-gradient-primary text-white shadow-lg transform scale-105'
-                      : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900 hover:transform hover:scale-102'
-                  }`}
-                >
-                  <Icon className="w-5 h-5 mr-3" />
-                  {item.label}
-                </button>
-              );
-            })}
-          </div>
-        </nav>
-        
-        <div className="absolute bottom-0 w-full p-4 border-t border-gray-200">
-          <div className="flex items-center mb-4">
-            <div className="w-8 h-8 bg-gradient-primary rounded-full flex items-center justify-center">
-              <span className="text-white text-sm font-medium">
-                {user.username.charAt(0).toUpperCase()}
-              </span>
-            </div>
-            <div className="ml-3">
-              <p className="text-sm font-medium text-gray-900">
-                {user.username} ({user.role})
-              </p>
-            </div>
-          </div>
-          <button
-            onClick={handleLogout}
-            className="w-full btn-danger text-sm py-2"
-          >
-            <LogOut className="w-4 h-4 mr-3" />
-            Logout
-          </button>
-        </div>
-      </div>
-
-      {/* Main Content */}
-          <div className="flex-1 lg:ml-0 max-w-full">
-        {/* Header */}
-            <div className="advanced-card shadow-sm border-b border-gray-200">
-          <div className="flex items-center justify-between h-16 px-6">
-            <div className="flex items-center">
+          {/* Sidebar */}
+          <div className={`fixed inset-y-0 left-0 top-16 z-50 w-64 md-card md-elevation-16 transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0 md-slide-up`}>
+            <div className="md-drawer-header">
+              <div className="flex items-center space-x-3">
+                <div className="h-8 w-8 bg-white rounded-full flex items-center justify-center text-2xl">
+                  🚐
+                </div>
+                <span className="md-h6 text-white">Sales Dashboard</span>
+              </div>
               <button
-                onClick={() => setSidebarOpen(true)}
-                className="lg:hidden btn-gradient p-2 mr-4"
+                onClick={() => setSidebarOpen(false)}
+                className="lg:hidden text-white hover:text-gray-200 ml-auto"
               >
-                <Menu className="w-6 h-6" />
+                <X className="w-6 h-6" />
               </button>
-              <h1 className="text-xl font-semibold text-transparent bg-clip-text bg-gradient-primary">
-                {menuItems.find(item => item.id === activeTab)?.label || 'Dashboard'}
-              </h1>
             </div>
             
-            <div className="flex items-center space-x-4">
-              <label className="btn-success cursor-pointer text-sm">
-                Import Excel
-                <input 
-                  type="file" 
-                  accept=".xlsx, .xls" 
-                  onChange={(e) => importFromExcel(e, activeTab === 'data' ? 'sales' : activeTab)} 
-                  className="hidden" 
-                />
-              </label>
+            <nav className="mt-6 px-3">
+              <ul className="md-nav-list">
+                {menuItems.map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <li key={item.id}>
+                      <button
+                        onClick={() => {
+                          setActiveTab(item.id);
+                          setSidebarOpen(false);
+                        }}
+                        className={`w-full md-nav-item ${
+                          activeTab === item.id ? 'active' : ''
+                        }`}
+                      >
+                        <Icon className="md-nav-icon" />
+                        <span className="md-body2">{item.label}</span>
+                      </button>
+                    </li>
+                  );
+                })}
+              </ul>
+            </nav>
+            
+            <div className="absolute bottom-0 w-full p-4 border-t" style={{borderColor: 'var(--md-grey-200)'}}>
+              <div className="flex items-center mb-4">
+                <div className="w-8 h-8 md-bg-primary rounded-full flex items-center justify-center">
+                  <span className="text-white text-sm font-medium">
+                    {user.username.charAt(0).toUpperCase()}
+                  </span>
+                </div>
+                <div className="ml-3">
+                  <p className="md-body2 font-medium" style={{color: 'var(--md-grey-900)'}}>
+                    {user.username} ({user.role})
+                  </p>
+                </div>
+              </div>
+              <button
+                onClick={handleLogout}
+                className="w-full md-button md-button-contained md-button-error text-sm py-2"
+              >
+                <LogOut className="w-4 h-4 mr-3" />
+                Logout
+              </button>
             </div>
           </div>
+
+          {/* Main Content */}
+          <div className="flex-1 lg:ml-0 max-w-full">
+            {/* Header */}
+            <div className="md-card md-elevation-2 border-b" style={{borderColor: 'var(--md-grey-200)'}}>
+              <div className="flex items-center justify-between h-16 px-6">
+                <div className="flex items-center">
+                  <button
+                    onClick={() => setSidebarOpen(true)}
+                    className="lg:hidden md-button md-button-contained p-2 mr-4"
+                  >
+                    <Menu className="w-6 h-6" />
+                  </button>
+                  <h1 className="md-h6 md-text-primary">
+                    {menuItems.find(item => item.id === activeTab)?.label || 'Dashboard'}
+                  </h1>
+                </div>
+                
+                <div className="flex items-center space-x-4">
+                  <label className="md-button md-button-contained md-button-success cursor-pointer text-sm">
+                    Import Excel
+                    <input 
+                      type="file" 
+                      accept=".xlsx, .xls" 
+                      onChange={(e) => importFromExcel(e, activeTab === 'data' ? 'sales' : activeTab)} 
+                      className="hidden" 
+                    />
+                  </label>
+                </div>
+              </div>
             </div>
 
-        {/* Page Content */}
-            <main className="p-6 fade-in max-w-6xl mx-auto">
-          {activeTab === 'dashboard' && (
-            <Dashboard 
-              entries={entries} 
-              expenses={expenses} 
-              customers={customers} 
-              stockMovements={stockMovements} 
-            />
-          )}
-          
-          {activeTab === 'sales' && (
-            <SalesForm 
-              onSubmit={addSalesEntry} 
-              customers={customers} 
-              user={user} 
-            />
-          )}
-          
-          {activeTab === 'expenses' && (
-            <ExpenseForm 
-              onSubmit={addExpense} 
-              user={user} 
-            />
-          )}
-          
-          {activeTab === 'customers' && (
-            <CustomerForm 
-              onSubmit={addCustomer} 
-            />
-          )}
-          
-          {activeTab === 'stock' && (
-            <StockForm 
-              onSubmit={addStockMovement} 
-              user={user} 
-            />
-          )}
-          
-          {activeTab === 'data' && (
-            <DataTables 
-              entries={entries} 
-              expenses={expenses} 
-              customers={customers} 
-              stockMovements={stockMovements} 
-              onExport={exportToExcel} 
-            />
-          )}
-        </main>
-      </div>
+            {/* Page Content */}
+            <main className="p-6 md-fade-in max-w-6xl mx-auto">
+              {activeTab === 'dashboard' && (
+                <Dashboard 
+                  entries={entries} 
+                  expenses={expenses} 
+                  customers={customers} 
+                  stockMovements={stockMovements} 
+                />
+              )}
+              
+              {activeTab === 'sales' && (
+                <SalesForm 
+                  onSubmit={addSalesEntry} 
+                  customers={customers} 
+                  user={user} 
+                />
+              )}
+              
+              {activeTab === 'expenses' && (
+                <ExpenseForm 
+                  onSubmit={addExpense} 
+                  user={user} 
+                />
+              )}
+              
+              {activeTab === 'customers' && (
+                <CustomerForm 
+                  onSubmit={addCustomer} 
+                />
+              )}
+              
+              {activeTab === 'stock' && (
+                <StockForm 
+                  onSubmit={addStockMovement} 
+                  user={user} 
+                />
+              )}
+              
+              {activeTab === 'data' && (
+                <DataTables 
+                  entries={entries} 
+                  expenses={expenses} 
+                  customers={customers} 
+                  stockMovements={stockMovements} 
+                  onExport={exportToExcel} 
+                />
+              )}
+            </main>
+          </div>
         </div>
       </div>
 
@@ -392,7 +401,7 @@ function VanSalesPortal() {
           onClick={() => setSidebarOpen(false)}
         />
       )}
-    </center></div>
+    </div>
   );
 }
 
