@@ -186,9 +186,9 @@ function VanSalesPortal() {
 
   if (!user) {
     return (
-      <div className="min-h-screen flex items-center justify-center p-4" style={{backgroundColor: 'var(--md-grey-100)'}}>
-        <div className="md-card md-elevation-8 p-8 w-full max-w-md md-fade-in">
-          <div className="md-text-center mb-8">
+      <div className="min-h-screen flex flex-col items-center justify-center p-4" style={{backgroundColor: 'var(--md-grey-100)'}}>
+        <div className="md-card md-elevation-8 p-8 w-full max-w-md md-fade-in md-text-center">
+          <div className="mb-8">
             <div className="flex justify-center mb-4">
               <img src="logo.png" alt="Al Majid Food Service" 
                 className="h-20 w-auto"
@@ -207,10 +207,12 @@ function VanSalesPortal() {
             <p className="md-body2" style={{color: 'var(--md-grey-600)'}}>Al Majid Jawad Van Sales Management System</p>
           </div>
           
-          <button onClick={handleLogin} className="w-full md-button md-button-contained py-4 text-lg">
+          <div className="flex justify-center">
+            <button onClick={handleLogin} className="md-button md-button-contained py-4 px-8 text-lg">
             <span className="mr-2">🔐</span>
             Login to Dashboard
-          </button>
+            </button>
+          </div>
         </div>
       </div>
     );
@@ -221,7 +223,7 @@ function VanSalesPortal() {
       {/* Company Logo Header */}
       <header className="md-app-bar">
         <div className="md-toolbar">
-          <div className="flex-1 flex justify-center items-center">
+          <div className="w-full flex justify-center items-center">
             <div className="flex items-center">
               <img src="logo.png" alt="Al Majid Food Service" 
                 className="h-12 w-auto mr-4"
@@ -233,7 +235,7 @@ function VanSalesPortal() {
               <div className="hidden items-center justify-center w-12 h-12 rounded-full bg-white bg-opacity-20 text-white text-2xl mr-4">
                 🚐
               </div>
-              <div className="md-text-center">
+              <div className="text-center">
                 <h1 className="md-h5 text-white mb-0">
                   Al Majid Jawad Food Service
                 </h1>
