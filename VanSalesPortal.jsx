@@ -123,7 +123,8 @@ function VanSalesPortal() {
             </select>
           </div>
         </center>
-          <div className="bg-white shadow-md rounded-xl p-4 overflow-auto">
+          <center>
+      <div className="bg-white shadow-md rounded-xl p-4 overflow-auto">
             <h2 className="text-xl font-semibold mb-4">Sales Summary</h2>
             <table className="min-w-full table-auto border text-sm md:text-base">
               <thead className="bg-gray-200">
@@ -187,7 +188,7 @@ function VanSalesPortal() {
           </div>
         </>
       )}
-    </div>
+    </div></center>
   );
 }
 
