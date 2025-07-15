@@ -89,10 +89,10 @@ function VanSalesPortal() {
   });
 
   return (
-    <div className="p-6 max-w-6xl mx-auto space-y-8 text-sm md:text-base">
+    <center><div className="p-6 max-w-6xl mx-auto space-y-8 text-sm md:text-base">
       {!user ? (
         <div className="flex flex-col items-center space-y-6 text-center">
-          <img src="logo.png" alt="Company Logo"/>
+          <img src="main/logo.png" alt="Company Logo"/>
           <h1 className="text-3xl font-bold text-gray-900">Van Sales Portal</h1>
           <button onClick={handleLogin} className="bg-gray-700 text-white text-lg px-6 py-2 rounded shadow hover:bg-gray-800">LOGIN</button>
         </div>
@@ -122,7 +122,7 @@ function VanSalesPortal() {
               <option value="weekly">This Week</option>
             </select>
           </div>
-
+        </center>
           <div className="bg-white shadow-md rounded-xl p-4 overflow-auto">
             <h2 className="text-xl font-semibold mb-4">Sales Summary</h2>
             <table className="min-w-full table-auto border text-sm md:text-base">
