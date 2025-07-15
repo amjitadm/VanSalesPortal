@@ -47,7 +47,7 @@ function ExpenseForm({ onSubmit, user }) {
   ];
 
   return (
-    <div className="max-w-4xl mx-auto"><cenetr>
+    <div className="max-w-4xl mx-auto"><center>
       <div className="advanced-card p-8 fade-in">
       <h2 className="text-3xl font-bold mb-8 text-center text-transparent bg-clip-text bg-gradient-danger">
         <span className="text-4xl pulse-animation mr-3">💸</span>
@@ -153,7 +153,7 @@ function ExpenseForm({ onSubmit, user }) {
           Add Expense
         </button>
       </form>
-    </div></cenetr>
+    </div></center>
     </div>
   );
 }
