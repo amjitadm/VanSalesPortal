@@ -186,23 +186,27 @@ function VanSalesPortal() {
 
   if (!user) {
     return (
-      <div className="min-h-screen flex items-center justify-center p-4"><center>
+      <div className="min-h-screen flex items-center justify-center p-4">
         <div className="advanced-card glass-card p-8 w-full max-w-md fade-in">
           <div className="text-center mb-8">
-            <div className="w-20 h-20 mx-auto mb-4 bg-gradient-primary rounded-full flex items-center justify-center text-3xl pulse-animation">
-              🚐
-            </div>
-            <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mb-2">
+            <img src="logo.png" alt="Al Majid Food Service" 
+              className="h-16 w-auto mr-4"
+              onError={(e) => {
+                e.target.style.display = 'none';
+                e.target.nextSibling.style.display = 'flex';
+              }}
+            />
+            <center><h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mb-2">
               Van Sales Portal
-            </h1>
-            <p className="text-gray-600">Al Majid Jawad Van Sales Management System</p>
+            </h1></center>
+            <center><p className="text-gray-600">Al Majid Jawad Van Sales Management System</p></center>
           </div>
           
-          <button onClick={handleLogin} className="w-full btn-gradient py-4 text-lg">
+          <center><button onClick={handleLogin} className="w-full btn-gradient py-4 text-lg">
             <span className="mr-2">🔐</span>
             Login to Dashboard
-          </button>
-        </div></center>
+          </button></center>
+        </div>
       </div>
     );
   }
@@ -213,18 +217,13 @@ function VanSalesPortal() {
       <header className="w-full bg-white shadow-lg border-b-4 border-gradient-primary">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-center">
-            <img 
-              src="/logo.png" 
-              alt="Al Majid Food Service" 
+            <img src="logo.png" alt="Al Majid Food Service" 
               className="h-16 w-auto mr-4"
               onError={(e) => {
                 e.target.style.display = 'none';
                 e.target.nextSibling.style.display = 'flex';
               }}
             />
-            <div className="hidden items-center justify-center w-16 h-16 bg-gradient-primary rounded-full mr-4">
-              <span className="text-2xl">🚐</span>
-            </div>
             <div className="text-center">
               <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-primary">
                 Al Majid Jawad Food Service
