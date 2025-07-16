@@ -250,15 +250,14 @@ function VanSalesPortal() {
         <div className="w-full max-w-7xl flex">
           {/* Sidebar */}
           <div className={`fixed inset-y-0 left-0 top-16 z-50 w-64 md-card md-elevation-16 transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0 md-slide-up`}>
-            <div className="md-drawer-header">
+                  <div className="md-drawer-header">
               <div className="flex items-center space-x-3">
                 <div className="h-8 w-8 bg-white rounded-full flex items-center justify-center text-2xl">
                   🚐
                 </div>
-                <center><span className="md-h6 text-white">Sales Dashboard</span></center>
+                <center<span className="md-h6 text-white">Sales Dashboard</span></div>center>
               </div>
-            </div>
-             <button
+              <button
                 onClick={() => setSidebarOpen(false)}
                 className="lg:hidden text-white hover:text-gray-200 ml-auto"
               >
