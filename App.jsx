@@ -225,7 +225,7 @@ function VanSalesPortal() {
         <div className="md-toolbar">
           <div className="w-full flex justify-center items-center">
             <div className="flex items-center">
-              <center><img src="/logo.png" alt="Al Majid Food Service" 
+              <center><img src="src/assets/image.png" alt="Al Majid Food Service" 
                 className="h-12 w-auto mr-4"
                 onError={(e) => {
                   e.target.style.display = 'none';
@@ -257,6 +257,13 @@ function VanSalesPortal() {
                 </div>
                 <center><span className="md-h6 text-white">Sales Dashboard</span></center>
               </div>
+            </div>
+             <button
+                onClick={() => setSidebarOpen(false)}
+                className="lg:hidden text-white hover:text-gray-200 ml-auto"
+              >
+                <X className="w-6 h-6" />
+              </button>
             </div>
             
             <nav className="mt-6 px-3">
