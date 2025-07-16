@@ -190,7 +190,7 @@ function VanSalesPortal() {
         <div className="md-card md-elevation-8 p-8 w-full max-w-md md-fade-in md-text-center">
           <div className="mb-8">
             <div className="flex justify-center mb-4">
-              <img src="logo.png" alt="Al Majid Food Service" 
+              <img src="/logo.png" alt="Al Majid Food Service" 
                 className="h-20 w-auto"
                 onError={(e) => {
                   e.target.style.display = 'none';
@@ -219,28 +219,28 @@ function VanSalesPortal() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col" style={{backgroundColor: 'var(--md-grey-50)'}}>
+    <div className="min-h-screen flex flex-col" style={{backgroundColor: 'var(--md-grey-50)'}}><center>
       {/* Company Logo Header */}
       <header className="md-app-bar">
         <div className="md-toolbar">
           <div className="w-full flex justify-center items-center">
             <div className="flex items-center">
-              <img src="logo.png" alt="Al Majid Food Service" 
+              <center><img src="/logo.png" alt="Al Majid Food Service" 
                 className="h-12 w-auto mr-4"
                 onError={(e) => {
                   e.target.style.display = 'none';
                   e.target.nextSibling.style.display = 'flex';
                 }}
-              />
+              /></center>
               <div className="hidden items-center justify-center w-12 h-12 rounded-full bg-white bg-opacity-20 text-white text-2xl mr-4">
                 🚐
               </div>
-              <div className="text-center">
+              <center><div className="text-center">
                 <h1 className="md-h5 text-white mb-0">
                   Al Majid Jawad Food Service
                 </h1>
                 <p className="md-caption text-white opacity-90 mb-0">Professional Van Sales Management System</p>
-              </div>
+              </div></center>
             </div>
           </div>
         </div>
@@ -255,14 +255,8 @@ function VanSalesPortal() {
                 <div className="h-8 w-8 bg-white rounded-full flex items-center justify-center text-2xl">
                   🚐
                 </div>
-                <span className="md-h6 text-white">Sales Dashboard</span>
+                <center><span className="md-h6 text-white">Sales Dashboard</span></center>
               </div>
-              <button
-                onClick={() => setSidebarOpen(false)}
-                className="lg:hidden text-white hover:text-gray-200 ml-auto"
-              >
-                <X className="w-6 h-6" />
-              </button>
             </div>
             
             <nav className="mt-6 px-3">
