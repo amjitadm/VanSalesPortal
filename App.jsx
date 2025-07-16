@@ -255,7 +255,7 @@ function VanSalesPortal() {
                 <div className="h-8 w-8 bg-white rounded-full flex items-center justify-center text-2xl">
                   🚐
                 </div>
-                <span className="md-h6 text-white">Sales Dashboard</span></div>
+                <center><span className="md-h6 text-white">Sales Dashboard</span></center></div>
               </div>
               <button
                 onClick={() => setSidebarOpen(false)}
