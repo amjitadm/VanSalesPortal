@@ -219,7 +219,7 @@ function VanSalesPortal() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col" style={{backgroundColor: 'var(--md-grey-50)'}}><center>
+    <div className="min-h-screen flex flex-col" style={{backgroundColor: 'var(--md-grey-50)'}}>
       {/* Company Logo Header */}
       <header className="md-app-bar">
         <div className="md-toolbar">
