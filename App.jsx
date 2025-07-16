@@ -255,7 +255,7 @@ function VanSalesPortal() {
                 <div className="h-8 w-8 bg-white rounded-full flex items-center justify-center text-2xl">
                   🚐
                 </div>
-                <center><span className="md-h6 text-white">Sales Dashboard</span></div></center>
+                <span className="md-h6 text-white">Sales Dashboard</span></div>
               </div>
               <button
                 onClick={() => setSidebarOpen(false)}
@@ -396,7 +396,6 @@ function VanSalesPortal() {
         </div>
       </div>
 
-      {/* Sidebar Overlay */}
       {sidebarOpen && (
         <div 
           className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
