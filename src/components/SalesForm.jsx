@@ -23,20 +23,22 @@ function SalesForm({ onSubmit, customers, user }) {
 
   const handleCustomerSelect = (e) => {
     const customerId = e.target.value;
-    const customer = customers.find(c => c.id === customerId);
+    const customer = customers.find(c => c.id === customerId || c.name === customerId);
     if (customer) {
       setForm({
         ...form,
         customer: customer.name,
         customerPhone: customer.phone,
-        customerAddress: customer.address
+        customerAddress: customer.address,
+        customerId: customer.id
       });
     } else {
       setForm({
         ...form,
         customer: '',
         customerPhone: '',
-        customerAddress: ''
+        customerAddress: '',
+        customerId: null
       });
     }
   };
@@ -162,10 +164,11 @@ function SalesForm({ onSubmit, customers, user }) {
             <select 
               onChange={handleCustomerSelect}
               className="md-input"
+              value=""
             >
               <option value="">Select existing customer</option>
               {customers.map(customer => (
-                <option key={customer.id} value={customer.id}>
+                <option key={customer.id || customer.name} value={customer.id || customer.name}>
                   {customer.name} - {customer.phone}
                 </option>
               ))}

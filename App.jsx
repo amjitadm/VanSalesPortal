@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import * as XLSX from 'xlsx';
 import './src/styles/material-theme.css';
+import { useSupabaseData } from './src/hooks/useSupabaseData';
 import { 
   LayoutDashboard, 
   Plus, 
@@ -29,42 +30,20 @@ function VanSalesPortal() {
   const [user, setUser] = useState(null);
   const [activeTab, setActiveTab] = useState('dashboard');
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  
-  // Data states
-  const [entries, setEntries] = useState([]);
-  const [expenses, setExpenses] = useState([]);
-  const [customers, setCustomers] = useState([]);
-  const [stockMovements, setStockMovements] = useState([]);
+  const [dbError, setDbError] = useState(null);
 
-  // Load data from localStorage on component mount
-  useEffect(() => {
-    const savedEntries = localStorage.getItem('vanSalesEntries');
-    const savedExpenses = localStorage.getItem('vanSalesExpenses');
-    const savedCustomers = localStorage.getItem('vanSalesCustomers');
-    const savedStock = localStorage.getItem('vanSalesStock');
-
-    if (savedEntries) setEntries(JSON.parse(savedEntries));
-    if (savedExpenses) setExpenses(JSON.parse(savedExpenses));
-    if (savedCustomers) setCustomers(JSON.parse(savedCustomers));
-    if (savedStock) setStockMovements(JSON.parse(savedStock));
-  }, []);
-
-  // Save data to localStorage whenever state changes
-  useEffect(() => {
-    localStorage.setItem('vanSalesEntries', JSON.stringify(entries));
-  }, [entries]);
-
-  useEffect(() => {
-    localStorage.setItem('vanSalesExpenses', JSON.stringify(expenses));
-  }, [expenses]);
-
-  useEffect(() => {
-    localStorage.setItem('vanSalesCustomers', JSON.stringify(customers));
-  }, [customers]);
-
-  useEffect(() => {
-    localStorage.setItem('vanSalesStock', JSON.stringify(stockMovements));
-  }, [stockMovements]);
+  // Use Supabase data hook
+  const {
+    data: { customers, sales: entries, expenses, stockMovements, products },
+    loading,
+    error,
+    loadData,
+    addCustomer,
+    addSalesEntry,
+    addExpense,
+    addStockMovement,
+    addProduct
+  } = useSupabaseData();
 
   const handleLogin = () => {
     const username = prompt("Username:");
@@ -84,34 +63,55 @@ function VanSalesPortal() {
     setSidebarOpen(false);
   };
 
-  const addSalesEntry = (entry) => {
-    setEntries(prev => [...prev, entry]);
-    
-    // Update customer purchase history if customer exists
-    if (entry.customer) {
-      setCustomers(prev => prev.map(customer => {
-        if (customer.name === entry.customer) {
-          return {
-            ...customer,
-            totalPurchases: (customer.totalPurchases || 0) + parseFloat(entry.total),
-            lastPurchase: entry.date
-          };
-        }
-        return customer;
-      }));
+  const handleAddSalesEntry = async (entryData) => {
+    try {
+      // Find customer by name if provided
+      let customerId = null;
+      if (entryData.customer) {
+        const customer = customers.find(c => c.name === entryData.customer);
+        customerId = customer?.id || null;
+      }
+
+      const salesEntry = {
+        ...entryData,
+        customer_id: customerId,
+        customer_name: entryData.customer,
+        customer_phone: entryData.customerPhone,
+        customer_address: entryData.customerAddress
+      };
+
+      await addSalesEntry(salesEntry);
+    } catch (err) {
+      console.error('Error adding sales entry:', err);
+      setDbError('Failed to add sales entry. Please try again.');
     }
   };
 
-  const addExpense = (expense) => {
-    setExpenses(prev => [...prev, expense]);
+  const handleAddExpense = async (expenseData) => {
+    try {
+      await addExpense(expenseData);
+    } catch (err) {
+      console.error('Error adding expense:', err);
+      setDbError('Failed to add expense. Please try again.');
+    }
   };
 
-  const addCustomer = (customer) => {
-    setCustomers(prev => [...prev, customer]);
+  const handleAddCustomer = async (customerData) => {
+    try {
+      await addCustomer(customerData);
+    } catch (err) {
+      console.error('Error adding customer:', err);
+      setDbError('Failed to add customer. Please try again.');
+    }
   };
 
-  const addStockMovement = (movement) => {
-    setStockMovements(prev => [...prev, movement]);
+  const handleAddStockMovement = async (movementData) => {
+    try {
+      await addStockMovement(movementData);
+    } catch (err) {
+      console.error('Error adding stock movement:', err);
+      setDbError('Failed to add stock movement. Please try again.');
+    }
   };
 
   const exportToExcel = (type = 'sales') => {
@@ -175,6 +175,35 @@ function VanSalesPortal() {
     e.target.value = ''; // Reset file input
   };
 
+  // Show loading state
+  if (loading && !user) {
+    return (
+      <div className="min-h-screen flex items-center justify-center" style={{backgroundColor: 'var(--md-grey-100)'}}>
+        <div className="md-card md-elevation-4 p-8 md-text-center">
+          <div className="md-loading mb-4"></div>
+          <p className="md-body1">Connecting to database...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Show database error
+  if (error && !user) {
+    return (
+      <div className="min-h-screen flex items-center justify-center" style={{backgroundColor: 'var(--md-grey-100)'}}>
+        <div className="md-card md-elevation-4 p-8 md-text-center">
+          <div className="text-red-500 text-6xl mb-4">⚠️</div>
+          <h2 className="md-h6 mb-4 md-text-error">Database Connection Error</h2>
+          <p className="md-body2 mb-4" style={{color: 'var(--md-grey-600)'}}>
+            Please click "Connect to Supabase" in the top right to set up your database.
+          </p>
+          <p className="md-caption" style={{color: 'var(--md-grey-500)'}}>
+            Error: {error}
+          </p>
+        </div>
+      </div>
+    );
+  }
   const menuItems = [
     { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
     { id: 'sales', label: 'Add Sales', icon: Plus },
@@ -345,6 +374,32 @@ function VanSalesPortal() {
 
             {/* Page Content */}
             <main className="p-6 md-fade-in max-w-6xl mx-auto">
+              {/* Database Error Alert */}
+              {dbError && (
+                <div className="mb-6 md-card md-elevation-4 p-4 border-l-4 border-red-500 bg-red-50">
+                  <div className="flex items-center">
+                    <div className="text-red-500 mr-3">⚠️</div>
+                    <div>
+                      <p className="md-body2 text-red-800">{dbError}</p>
+                      <button 
+                        onClick={() => setDbError(null)}
+                        className="md-button md-button-text md-button-error text-sm mt-2"
+                      >
+                        Dismiss
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Loading Indicator */}
+              {loading && (
+                <div className="mb-6 md-card md-elevation-4 p-4 md-text-center">
+                  <div className="md-loading inline-block mr-3"></div>
+                  <span className="md-body2">Syncing with database...</span>
+                </div>
+              )}
+
               {activeTab === 'dashboard' && (
                 <Dashboard 
                   entries={entries} 
@@ -356,7 +411,7 @@ function VanSalesPortal() {
               
               {activeTab === 'sales' && (
                 <SalesForm 
-                  onSubmit={addSalesEntry} 
+                  onSubmit={handleAddSalesEntry} 
                   customers={customers} 
                   user={user} 
                 />
@@ -364,20 +419,20 @@ function VanSalesPortal() {
               
               {activeTab === 'expenses' && (
                 <ExpenseForm 
-                  onSubmit={addExpense} 
+                  onSubmit={handleAddExpense} 
                   user={user} 
                 />
               )}
               
               {activeTab === 'customers' && (
                 <CustomerForm 
-                  onSubmit={addCustomer} 
+                  onSubmit={handleAddCustomer} 
                 />
               )}
               
               {activeTab === 'stock' && (
                 <StockForm 
-                  onSubmit={addStockMovement} 
+                  onSubmit={handleAddStockMovement} 
                   user={user} 
                 />
               )}
