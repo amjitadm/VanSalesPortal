@@ -72,8 +72,8 @@ function SalesForm({ onSubmit, customers, user }) {
 
   return (
     <div className="max-w-4xl mx-auto">
-      <div className="md-card md-elevation-6 p-8 md-fade-in">
-      <h2 className="md-h4 mb-8 md-text-center md-text-primary">
+      <div className="advanced-card p-8 fade-in">
+      <h2 className="text-3xl font-bold mb-8 text-center text-blue-800">
         <span className="text-4xl mr-3">💰</span>
         Add Sales Entry
         <span className="text-4xl ml-3">📊</span>
@@ -81,32 +81,32 @@ function SalesForm({ onSubmit, customers, user }) {
       
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="md-input-group">
+          <div className="input-group">
             <input 
               name="date" 
               value={form.date} 
               onChange={handleChange} 
               type="date" 
-              className="md-input"
+              className="advanced-input"
               placeholder=" "
               required
             />
-            <label className="md-input-label">Date</label>
+            <label className="floating-label">Date</label>
           </div>
           
-          <div className="md-input-group">
+          <div className="input-group">
             <input 
               name="product" 
               value={form.product} 
               onChange={handleChange} 
-              className="md-input"
+              className="advanced-input"
               placeholder=" "
               required
             />
-            <label className="md-input-label">Product Name</label>
+            <label className="floating-label">Product Name</label>
           </div>
           
-          <div className="md-input-group">
+          <div className="input-group">
             <input 
               name="quantity" 
               value={form.quantity} 
@@ -114,15 +114,15 @@ function SalesForm({ onSubmit, customers, user }) {
               placeholder=" "
               type="number" 
               step="0.01"
-              className="md-input"
+              className="advanced-input"
               required
             />
-            <label className="md-input-label">Quantity (Units)</label>
+            <label className="floating-label">Quantity (Units)</label>
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="md-input-group">
+          <div className="input-group">
             <input 
               name="price" 
               value={form.price} 
@@ -130,40 +130,40 @@ function SalesForm({ onSubmit, customers, user }) {
               placeholder=" "
               type="number" 
               step="0.01"
-              className="md-input"
+              className="advanced-input"
               required
             />
-            <label className="md-input-label">Unit Price (QAR)</label>
+            <label className="floating-label">Unit Price (QAR)</label>
           </div>
           
-          <div className="md-input-group">
+          <div className="input-group">
             <input 
               name="van" 
               value={form.van} 
               onChange={handleChange} 
               placeholder=" "
-              className="md-input"
+              className="advanced-input"
             />
-            <label className="md-input-label">Van Number</label>
+            <label className="floating-label">Van Number</label>
           </div>
           
-          <div className="md-input-group">
+          <div className="input-group">
             <input 
               name="route" 
               value={form.route} 
               onChange={handleChange} 
               placeholder=" "
-              className="md-input"
+              className="advanced-input"
             />
-            <label className="md-input-label">Route Name</label>
+            <label className="floating-label">Route Name</label>
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="md-input-group">
+          <div className="input-group">
             <select 
               onChange={handleCustomerSelect}
-              className="md-input"
+              className="advanced-input"
               value=""
             >
               <option value="">Select existing customer</option>
@@ -173,91 +173,91 @@ function SalesForm({ onSubmit, customers, user }) {
                 </option>
               ))}
             </select>
-            <label className="md-input-label">Select Customer</label>
+            <label className="floating-label">Select Customer</label>
           </div>
           
-          <div className="md-input-group">
+          <div className="input-group">
             <select 
               name="paymentMethod" 
               value={form.paymentMethod} 
               onChange={handleChange}
-              className="md-input"
+              className="advanced-input"
             >
               <option value="cash">Cash</option>
               <option value="credit">Credit</option>
               <option value="card">Card</option>
               <option value="transfer">Bank Transfer</option>
             </select>
-            <label className="md-input-label">Payment Method</label>
+            <label className="floating-label">Payment Method</label>
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="md-input-group">
+          <div className="input-group">
             <input 
               name="customer" 
               value={form.customer} 
               onChange={handleChange} 
               placeholder=" "
-              className="md-input"
+              className="advanced-input"
             />
-            <label className="md-input-label">Customer Name</label>
+            <label className="floating-label">Customer Name</label>
           </div>
           
-          <div className="md-input-group">
+          <div className="input-group">
             <input 
               name="customerPhone" 
               value={form.customerPhone} 
               onChange={handleChange} 
               placeholder=" "
-              className="md-input"
+              className="advanced-input"
             />
-            <label className="md-input-label">Customer Phone</label>
+            <label className="floating-label">Customer Phone</label>
           </div>
           
-          <div className="md-input-group">
+          <div className="input-group">
             <input 
               name="stockLoaded" 
               value={form.stockLoaded} 
               onChange={handleChange} 
               placeholder=" "
               type="number"
-              className="md-input"
+              className="advanced-input"
             />
-            <label className="md-input-label">Stock Loaded</label>
+            <label className="floating-label">Stock Loaded</label>
           </div>
         </div>
 
-        <div className="md-input-group">
+        <div className="input-group">
           <input 
             name="customerAddress" 
             value={form.customerAddress} 
             onChange={handleChange} 
             placeholder=" "
-            className="md-input"
+            className="advanced-input"
           />
-          <label className="md-input-label">Customer Address</label>
+          <label className="floating-label">Customer Address</label>
         </div>
 
-        <div className="md-input-group">
+        <div className="input-group">
           <textarea 
             name="remarks" 
             value={form.remarks} 
             onChange={handleChange} 
             placeholder=" "
             rows="3"
-            className="md-input"
+            className="advanced-input"
           />
-          <label className="md-input-label">Remarks</label>
+          <label className="floating-label">Remarks</label>
         </div>
 
-        <div className="md-card md-elevation-4 p-4 md-bg-primary text-white">
-          <p className="md-h6">
+        <div className="advanced-card p-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white">
+          <p className="text-xl font-semibold">
             Total: QAR {((parseFloat(form.quantity) || 0) * (parseFloat(form.price) || 0)).toFixed(2)}
           </p>
         </div>
 
-        <button type="submit" className="w-full md-button md-button-contained py-3 flex items-center justify-center gap-2">
+        <button type="submit" className="w-full btn-gradient py-3 flex items-center justify-center gap-2 rounded-lg shadow-xl hover:shadow-2xl transition-all">
           <Save className="w-5 h-5" />
           Add Sales Entry
         </button>

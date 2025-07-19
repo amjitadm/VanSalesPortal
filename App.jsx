@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import * as XLSX from 'xlsx';
-import './src/styles/material-theme.css';
+import './src/styles/advanced-theme.css';
+import './src/styles/main.css';
 import { useSupabaseData } from './src/hooks/useSupabaseData';
 import { 
   LayoutDashboard, 
@@ -215,8 +216,8 @@ function VanSalesPortal() {
 
   if (!user) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center p-4" style={{backgroundColor: 'var(--md-grey-100)'}}>
-        <div className="md-card md-elevation-8 p-8 w-full max-w-md md-fade-in md-text-center">
+      <div className="min-h-screen flex flex-col items-center justify-center p-4" style={{background: 'linear-gradient(135deg, var(--primary-50), var(--secondary-50))'}}>
+        <div className="advanced-card p-8 w-full max-w-md fade-in text-center">
           <div className="mb-8">
             <div className="flex justify-center mb-4">
               <img src="/logo.png" alt="Al Majid Food Service" 
@@ -226,18 +227,18 @@ function VanSalesPortal() {
                   e.target.nextSibling.style.display = 'flex';
                 }}
               />
-              <div className="hidden items-center justify-center w-20 h-20 rounded-full md-bg-primary text-white text-3xl">
+              <div className="hidden items-center justify-center w-20 h-20 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 text-white text-3xl shadow-lg">
                 🚐
               </div>
             </div>
-            <h1 className="md-h4 md-text-primary mb-2">
+            <h1 className="text-4xl font-bold text-blue-800 mb-2">
               Van Sales Portal
             </h1>
-            <p className="md-body2" style={{color: 'var(--md-grey-600)'}}>Al Majid Jawad Van Sales Management System</p>
+            <p className="text-gray-600">Al Majid Jawad Van Sales Management System</p>
           </div>
           
           <div className="flex justify-center">
-            <button onClick={handleLogin} className="md-button md-button-contained py-4 px-8 text-lg">
+            <button onClick={handleLogin} className="btn-gradient py-4 px-8 text-lg rounded-lg shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all">
             <span className="mr-2">🔐</span>
             Login to Dashboard
             </button>
@@ -248,10 +249,10 @@ function VanSalesPortal() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col" style={{backgroundColor: 'var(--md-grey-50)'}}>
+    <div className="min-h-screen flex flex-col" style={{background: 'linear-gradient(135deg, var(--primary-50), var(--secondary-50))'}}>
       {/* Company Logo Header */}
-      <header className="md-app-bar">
-        <div className="md-toolbar">
+      <header className="bg-gradient-to-r from-blue-600 to-blue-700 shadow-xl">
+        <div className="flex items-center justify-center py-4 px-6">
           <div className="w-full flex justify-center items-center">
             <div className="flex items-center">
               <center><img src="src/assets/image.png" alt="Al Majid Food Service" 
@@ -261,7 +262,7 @@ function VanSalesPortal() {
                   e.target.nextSibling.style.display = 'flex';
                 }}
               /></center>
-              <div className="hidden items-center justify-center w-12 h-12 rounded-full bg-white bg-opacity-20 text-white text-2xl mr-4">
+              <div className="hidden items-center justify-center w-12 h-12 rounded-full bg-white bg-opacity-20 text-white text-2xl mr-4 shadow-lg">
                 🚐
               </div>
               <center><div className="text-center">
@@ -278,13 +279,13 @@ function VanSalesPortal() {
       <div className="flex-1 flex justify-center">
         <div className="w-full max-w-7xl flex">
           {/* Sidebar */}
-          <div className={`fixed inset-y-0 left-0 top-16 z-50 w-64 md-card md-elevation-16 transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0 md-slide-up`}>
-                  <div className="md-drawer-header">
+          <div className={`fixed inset-y-0 left-0 top-16 z-50 w-64 glass-card transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0 slide-in-left`}>
+                  <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-4">
               <div className="flex items-center space-x-3">
-                <div className="h-8 w-8 bg-white rounded-full flex items-center justify-center text-2xl">
+                <div className="h-8 w-8 bg-white rounded-full flex items-center justify-center text-2xl shadow-lg">
                   🚐
                 </div>
-                <span className="md-h6 text-white">Sales Dashboard</span></div>
+                <span className="text-xl font-semibold text-white">Sales Dashboard</span></div>
               </div>
               <button
                 onClick={() => setSidebarOpen(false)}
@@ -295,7 +296,7 @@ function VanSalesPortal() {
             </div>
             
             <nav className="mt-6 px-3">
-              <ul className="md-nav-list">
+              <ul className="space-y-2">
                 {menuItems.map((item) => {
                   const Icon = item.icon;
                   return (
@@ -305,12 +306,12 @@ function VanSalesPortal() {
                           setActiveTab(item.id);
                           setSidebarOpen(false);
                         }}
-                        className={`w-full md-nav-item ${
-                          activeTab === item.id ? 'active' : ''
+                        className={`w-full flex items-center p-3 rounded-lg transition-all hover:bg-white hover:bg-opacity-10 ${
+                          activeTab === item.id ? 'bg-white bg-opacity-20 text-blue-600' : 'text-gray-700 hover:text-blue-600'
                         }`}
                       >
-                        <Icon className="md-nav-icon" />
-                        <span className="md-body2">{item.label}</span>
+                        <Icon className="w-5 h-5 mr-3" />
+                        <span className="font-medium">{item.label}</span>
                       </button>
                     </li>
                   );
@@ -318,22 +319,22 @@ function VanSalesPortal() {
               </ul>
             </nav>
             
-            <div className="absolute bottom-0 w-full p-4 border-t" style={{borderColor: 'var(--md-grey-200)'}}>
+            <div className="absolute bottom-0 w-full p-4 border-t border-gray-200">
               <div className="flex items-center mb-4">
-                <div className="w-8 h-8 md-bg-primary rounded-full flex items-center justify-center">
+                <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center shadow-lg">
                   <span className="text-white text-sm font-medium">
                     {user.username.charAt(0).toUpperCase()}
                   </span>
                 </div>
                 <div className="ml-3">
-                  <p className="md-body2 font-medium" style={{color: 'var(--md-grey-900)'}}>
+                  <p className="text-sm font-medium text-gray-900">
                     {user.username} ({user.role})
                   </p>
                 </div>
               </div>
               <button
                 onClick={handleLogout}
-                className="w-full md-button md-button-contained md-button-error text-sm py-2"
+                className="w-full bg-gradient-to-r from-red-500 to-red-600 text-white rounded-lg py-2 px-4 text-sm font-medium hover:shadow-lg transition-all"
               >
                 <LogOut className="w-4 h-4 mr-3" />
                 Logout
@@ -344,22 +345,22 @@ function VanSalesPortal() {
           {/* Main Content */}
           <div className="flex-1 lg:ml-0 max-w-full">
             {/* Header */}
-            <div className="md-card md-elevation-2 border-b" style={{borderColor: 'var(--md-grey-200)'}}>
+            <div className="advanced-card border-b border-gray-200">
               <div className="flex items-center justify-between h-16 px-6">
                 <div className="flex items-center">
                   <button
                     onClick={() => setSidebarOpen(true)}
-                    className="lg:hidden md-button md-button-contained p-2 mr-4"
+                    className="lg:hidden btn-gradient p-2 mr-4 rounded-lg"
                   >
                     <Menu className="w-6 h-6" />
                   </button>
-                  <h1 className="md-h6 md-text-primary">
+                  <h1 className="text-xl font-semibold text-blue-800">
                     {menuItems.find(item => item.id === activeTab)?.label || 'Dashboard'}
                   </h1>
                 </div>
                 
                 <div className="flex items-center space-x-4">
-                  <label className="md-button md-button-contained md-button-success cursor-pointer text-sm">
+                  <label className="btn-success cursor-pointer text-sm px-4 py-2 rounded-lg shadow-lg hover:shadow-xl transition-all">
                     Import Excel
                     <input 
                       type="file" 
@@ -373,17 +374,17 @@ function VanSalesPortal() {
             </div>
 
             {/* Page Content */}
-            <main className="p-6 md-fade-in max-w-6xl mx-auto">
+            <main className="p-6 fade-in max-w-6xl mx-auto">
               {/* Database Error Alert */}
               {dbError && (
-                <div className="mb-6 md-card md-elevation-4 p-4 border-l-4 border-red-500 bg-red-50">
+                <div className="mb-6 advanced-card p-4 border-l-4 border-red-500 bg-red-50">
                   <div className="flex items-center">
                     <div className="text-red-500 mr-3">⚠️</div>
                     <div>
-                      <p className="md-body2 text-red-800">{dbError}</p>
+                      <p className="text-sm text-red-800">{dbError}</p>
                       <button 
                         onClick={() => setDbError(null)}
-                        className="md-button md-button-text md-button-error text-sm mt-2"
+                        className="text-red-600 hover:text-red-800 text-sm mt-2 underline"
                       >
                         Dismiss
                       </button>
@@ -394,9 +395,9 @@ function VanSalesPortal() {
 
               {/* Loading Indicator */}
               {loading && (
-                <div className="mb-6 md-card md-elevation-4 p-4 md-text-center">
-                  <div className="md-loading inline-block mr-3"></div>
-                  <span className="md-body2">Syncing with database...</span>
+                <div className="mb-6 advanced-card p-4 text-center">
+                  <div className="loading-spinner inline-block mr-3"></div>
+                  <span className="text-sm">Syncing with database...</span>
                 </div>
               )}
 
