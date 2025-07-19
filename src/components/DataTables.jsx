@@ -56,43 +56,43 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
     
     return (
       <div className="overflow-x-auto">
-        <table className="md-table">
-          <thead className="md-table-head">
+        <table className="advanced-table">
+          <thead className="bg-gray-100">
             <tr>
-              <th>Date</th>
-              <th>Product</th>
-              <th>Customer</th>
-              <th>Qty</th>
-              <th>Price (QAR)</th>
-              <th>Total (QAR)</th>
-              <th>Payment</th>
-              <th>Actions</th>
+              <th className="p-4 text-left font-semibold text-gray-700">Date</th>
+              <th className="p-4 text-left font-semibold text-gray-700">Product</th>
+              <th className="p-4 text-left font-semibold text-gray-700">Customer</th>
+              <th className="p-4 text-left font-semibold text-gray-700">Qty</th>
+              <th className="p-4 text-left font-semibold text-gray-700">Price (QAR)</th>
+              <th className="p-4 text-left font-semibold text-gray-700">Total (QAR)</th>
+              <th className="p-4 text-left font-semibold text-gray-700">Payment</th>
+              <th className="p-4 text-left font-semibold text-gray-700">Actions</th>
             </tr>
           </thead>
-          <tbody className="md-table-body">
+          <tbody>
             {filteredSales.map((entry, idx) => (
-              <tr key={idx}>
-                <td>{entry.date}</td>
-                <td>{entry.product}</td>
-                <td>{entry.customer || 'N/A'}</td>
-                <td>{entry.quantity}</td>
-                <td>QAR {entry.price}</td>
-                <td className="font-medium">QAR {parseFloat(entry.total).toFixed(2)}</td>
-                <td>
-                  <span className={`md-chip ${
-                    entry.paymentMethod === 'cash' ? 'md-chip-success' :
-                    entry.paymentMethod === 'credit' ? 'md-chip-warning' :
-                    'md-chip-primary'
+              <tr key={idx} className="hover:bg-gray-50 transition-colors">
+                <td className="p-4 border-b border-gray-200">{entry.date}</td>
+                <td className="p-4 border-b border-gray-200">{entry.product}</td>
+                <td className="p-4 border-b border-gray-200">{entry.customer || 'N/A'}</td>
+                <td className="p-4 border-b border-gray-200">{entry.quantity}</td>
+                <td className="p-4 border-b border-gray-200">QAR {entry.price}</td>
+                <td className="p-4 border-b border-gray-200 font-medium">QAR {parseFloat(entry.total).toFixed(2)}</td>
+                <td className="p-4 border-b border-gray-200">
+                  <span className={`status-badge ${
+                    entry.paymentMethod === 'cash' ? 'success' :
+                    entry.paymentMethod === 'credit' ? 'warning' :
+                    'info'
                   }`}>
                     {entry.paymentMethod || 'cash'}
                   </span>
                 </td>
-                <td>
+                <td className="p-4 border-b border-gray-200">
                   <div className="flex space-x-2">
-                    <button className="md-text-primary">
+                    <button className="text-blue-600 hover:text-blue-800">
                       <Eye className="w-4 h-4" />
                     </button>
-                    <button className="md-text-success">
+                    <button className="text-green-600 hover:text-green-800">
                       <Edit className="w-4 h-4" />
                     </button>
                   </div>
@@ -102,7 +102,7 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
           </tbody>
         </table>
         {filteredSales.length === 0 && (
-          <div className="md-text-center py-8" style={{color: 'var(--md-grey-500)'}}>No sales entries found</div>
+          <div className="text-center py-8 text-gray-500">No sales entries found</div>
         )}
       </div>
     );
@@ -113,37 +113,37 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
     
     return (
       <div className="overflow-x-auto">
-        <table className="md-table">
-          <thead className="md-table-head">
+        <table className="advanced-table">
+          <thead className="bg-gray-100">
             <tr>
-              <th>Date</th>
-              <th>Category</th>
-              <th>Description</th>
-              <th>Amount (QAR)</th>
-              <th>Van</th>
-              <th>Receipt</th>
-              <th>Actions</th>
+              <th className="p-4 text-left font-semibold text-gray-700">Date</th>
+              <th className="p-4 text-left font-semibold text-gray-700">Category</th>
+              <th className="p-4 text-left font-semibold text-gray-700">Description</th>
+              <th className="p-4 text-left font-semibold text-gray-700">Amount (QAR)</th>
+              <th className="p-4 text-left font-semibold text-gray-700">Van</th>
+              <th className="p-4 text-left font-semibold text-gray-700">Receipt</th>
+              <th className="p-4 text-left font-semibold text-gray-700">Actions</th>
             </tr>
           </thead>
-          <tbody className="md-table-body">
+          <tbody>
             {filteredExpenses.map((expense, idx) => (
-              <tr key={idx}>
-                <td>{expense.date}</td>
-                <td>
-                  <span className="md-chip md-chip-error">
+              <tr key={idx} className="hover:bg-gray-50 transition-colors">
+                <td className="p-4 border-b border-gray-200">{expense.date}</td>
+                <td className="p-4 border-b border-gray-200">
+                  <span className="status-badge danger">
                     {expense.category}
                   </span>
                 </td>
-                <td>{expense.description}</td>
-                <td className="font-medium text-red-600">QAR {parseFloat(expense.amount).toFixed(2)}</td>
-                <td>{expense.van || 'N/A'}</td>
-                <td>{expense.receipt || 'N/A'}</td>
-                <td>
+                <td className="p-4 border-b border-gray-200">{expense.description}</td>
+                <td className="p-4 border-b border-gray-200 font-medium text-red-600">QAR {parseFloat(expense.amount).toFixed(2)}</td>
+                <td className="p-4 border-b border-gray-200">{expense.van || 'N/A'}</td>
+                <td className="p-4 border-b border-gray-200">{expense.receipt || 'N/A'}</td>
+                <td className="p-4 border-b border-gray-200">
                   <div className="flex space-x-2">
-                    <button className="md-text-primary">
+                    <button className="text-blue-600 hover:text-blue-800">
                       <Eye className="w-4 h-4" />
                     </button>
-                    <button className="md-text-success">
+                    <button className="text-green-600 hover:text-green-800">
                       <Edit className="w-4 h-4" />
                     </button>
                   </div>
@@ -153,7 +153,7 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
           </tbody>
         </table>
         {filteredExpenses.length === 0 && (
-          <div className="md-text-center py-8" style={{color: 'var(--md-grey-500)'}}>No expenses found</div>
+          <div className="text-center py-8 text-gray-500">No expenses found</div>
         )}
       </div>
     );
@@ -269,34 +269,34 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
 
   return (
     <div className="min-h-screen">
-      <div className="md-card md-elevation-6 max-w-6xl mx-auto md-fade-in">
+      <div className="advanced-card max-w-6xl mx-auto fade-in">
         {/* Header */}
-        <div className="p-6 border-b" style={{borderColor: 'var(--md-grey-200)'}}>
+        <div className="p-6 border-b border-gray-200">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-            <h2 className="md-h6 md-text-primary">
+            <h2 className="text-xl font-semibold text-blue-800">
               Data Management
             </h2>
             
             <div className="flex flex-col md:flex-row gap-4">
               {/* Search */}
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4" style={{color: 'var(--md-grey-400)'}} />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
                 <input
                   type="text"
                   placeholder="Search..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="md-input pl-10"
+                  className="advanced-input pl-10"
                 />
               </div>
               
               {/* Filter */}
               <div className="flex items-center gap-2">
-                <Filter className="w-4 h-4" style={{color: 'var(--md-grey-400)'}} />
+                <Filter className="w-4 h-4 text-gray-400" />
                 <select
                   value={filter}
                   onChange={(e) => setFilter(e.target.value)}
-                  className="md-input"
+                  className="advanced-input"
                 >
                   <option value="all">All Time</option>
                   <option value="today">Today</option>
@@ -308,7 +308,7 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
               {/* Export */}
               <button
                 onClick={() => onExport(activeTab)}
-                className="md-button md-button-contained flex items-center gap-2"
+                className="btn-gradient flex items-center gap-2 px-4 py-2 rounded-lg shadow-lg hover:shadow-xl transition-all"
               >
                 <Download className="w-4 h-4" />
                 Export
@@ -318,7 +318,7 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
         </div>
 
         {/* Tabs */}
-        <div className="border-b" style={{borderColor: 'var(--md-grey-200)'}}>
+        <div className="border-b border-gray-200">
           <nav className="flex space-x-8 px-6">
             {tabs.map((tab) => (
               <button
@@ -326,17 +326,13 @@ function DataTables({ entries, expenses, customers, stockMovements, onExport }) 
                 onClick={() => setActiveTab(tab.id)}
                 className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors ${
                   activeTab === tab.id
-                    ? 'md-text-primary'
+                    ? 'text-blue-600 border-blue-600'
                     : 'border-transparent hover:border-gray-300'
                 }`}
-                style={{
-                  borderBottomColor: activeTab === tab.id ? 'var(--md-primary-500)' : 'transparent',
-                  color: activeTab === tab.id ? 'var(--md-primary-500)' : 'var(--md-grey-500)'
-                }}
               >
                 {tab.label}
-                <span className={`ml-2 py-0.5 px-2 rounded-full text-xs md-chip ${
-                  activeTab === tab.id ? 'md-chip-primary' : ''
+                <span className={`ml-2 py-0.5 px-2 rounded-full text-xs status-badge ${
+                  activeTab === tab.id ? 'info' : ''
                 }`}>
                   {tab.count}
                 </span>
